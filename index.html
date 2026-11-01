@@ -81,23 +81,23 @@ h1,h2,h3{overflow-wrap:break-word;font-family:var(--display);font-style:italic;f
 .c3::before{width:54px;height:54px;left:18px;top:-28px}.c3::after{width:40px;height:40px;left:64px;top:-18px}
 @keyframes drift{to{transform:translateX(60px)}}
 .road{position:absolute;inset:auto 0 0;height:28%;background:var(--road)}
-.road::after{content:"";position:absolute;left:0;right:-90px;top:38%;height:4px;background:repeating-linear-gradient(90deg,var(--caramel) 0 46px,transparent 46px 90px);opacity:.85;animation:lane 1.1s linear infinite}
+.road::after{content:"";position:absolute;left:0;right:-90px;top:22%;height:4px;background:repeating-linear-gradient(90deg,var(--caramel) 0 46px,transparent 46px 90px);opacity:.85;animation:lane 1.1s linear infinite}
 @keyframes lane{to{transform:translateX(-90px)}}
 .sky,.w-sky{container-type:inline-size;--s:1}
 .lane{position:absolute;inset:0;pointer-events:none}
-.veh{position:absolute;display:block;height:auto;filter:drop-shadow(0 6px 6px rgba(0,0,0,.45))}
-.near{bottom:13%}
+.veh{position:absolute;display:block;height:auto;max-width:none;filter:drop-shadow(0 7px 5px rgba(0,0,0,.55))}
+.veh.near{bottom:13%}
 .lane.near .veh{left:-340px;animation:driveR var(--d,22s) linear infinite;animation-delay:var(--dl,0s)}
-.lane.far .veh{right:-260px;bottom:26%;opacity:.5;transform:scaleX(-1);animation:driveL var(--d,30s) linear infinite;animation-delay:var(--dl,0s)}
-.n1{width:calc(220px * var(--s));--dl:0s}.n2{width:calc(112px * var(--s));--dl:-5.5s}.n3{width:calc(124px * var(--s));--dl:-11s}.n4{width:calc(118px * var(--s));--dl:-16.5s}
-.f1{width:calc(76px * var(--s));--dl:0s}.f2{width:calc(72px * var(--s));--dl:-15s}
+.lane.far .veh{right:-260px;bottom:27%;opacity:.45;filter:brightness(.7) drop-shadow(0 4px 4px rgba(0,0,0,.4));transform:scaleX(-1);animation:driveL var(--d,30s) linear infinite;animation-delay:var(--dl,0s)}
+.n1{width:calc(230px * var(--s));--dl:0s}.n2{width:calc(172px * var(--s));--dl:-7.3s}.n3{width:calc(140px * var(--s));--dl:-14.6s}
+.f1{width:calc(96px * var(--s));--dl:0s}.f2{width:calc(80px * var(--s));--dl:-15s}
 @keyframes driveR{to{translate:calc(100cqw + 680px) 0}}
 @keyframes driveL{to{translate:calc(-100cqw - 560px) 0}}
-@media (min-width:860px){.sky{--s:1.35}}
-.w-sky .near{bottom:10%}
+@media (min-width:860px){.sky{--s:1.35;height:330px}}
+.w-sky .veh.near{bottom:11%}
 .w-sky .lane.near .veh{--d:14s}
-.w1{width:110px;--dl:0s}.w2{width:190px;--dl:-7s}
-@media (prefers-reduced-motion:reduce){.cloud,.road::after,.veh{animation:none!important}.lane.near .veh{left:auto}.n1{left:6%!important}.n2{left:40%!important}.n3{left:58%!important}.n4{left:78%!important}.f1{right:20%!important}.f2{right:60%!important}.w1{left:8%!important}.w2{left:42%!important}}
+.w1{width:120px;--dl:0s}.w2{width:200px;--dl:-7s}
+@media (prefers-reduced-motion:reduce){.cloud,.road::after,.veh{animation:none!important}.lane.near .veh{left:auto}.n1{left:4%!important}.n2{left:42%!important}.n3{left:72%!important}.f1{right:20%!important}.f2{right:60%!important}.w1{left:8%!important}.w2{left:42%!important}}
 
 /* registration card overlapping the sky */
 .hero-card{position:relative;z-index:3;margin-top:-34px;background:var(--tarmac);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.5);padding:0 0 18px;overflow:hidden}
@@ -271,10 +271,6 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
   <symbol id="i-form" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></g></symbol>
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h12V9.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></g></symbol>
-  <symbol id="s-car" viewBox="0 0 200 74"><path style="fill:var(--chalk)" d="M10 50 Q10 40 22 38 L55 34 Q75 16 100 14 L130 14 Q148 16 162 32 L185 36 Q194 38 194 48 L194 56 Q194 60 190 60 L14 60 Q10 60 10 56 Z"/><path style="fill:#3a2416" d="M64 34 Q80 21 100 19 L110 19 L110 34 Z"/><path style="fill:#3a2416" d="M116 19 L129 19 Q143 21 153 33 L116 34 Z"/><rect x="186" y="42" width="7" height="5" rx="2" style="fill:#ffd9a0"/><circle cx="52" cy="60" r="12" style="fill:#0f0905"/><circle cx="52" cy="60" r="5.4" style="fill:var(--caramel)"/><circle cx="156" cy="60" r="12" style="fill:#0f0905"/><circle cx="156" cy="60" r="5.4" style="fill:var(--caramel)"/></symbol>
-  <symbol id="s-suv" viewBox="0 0 204 76"><path style="fill:var(--chalk)" d="M8 56 L8 22 Q8 12 18 12 L132 12 Q140 12 146 18 L166 36 L188 40 Q196 42 196 50 L196 58 Q196 62 192 62 L12 62 Q8 62 8 58 Z"/><path style="fill:#3a2416" d="M18 18 L58 18 L58 36 L18 36 Z"/><path style="fill:#3a2416" d="M64 18 L128 18 Q134 18 138 22 L152 36 L64 36 Z"/><rect x="26" y="5" width="96" height="4" rx="2" style="fill:var(--chalk)"/><rect x="188" y="44" width="7" height="5" rx="2" style="fill:#ffd9a0"/><circle cx="46" cy="62" r="13" style="fill:#0f0905"/><circle cx="46" cy="62" r="5.9" style="fill:var(--caramel)"/><circle cx="160" cy="62" r="13" style="fill:#0f0905"/><circle cx="160" cy="62" r="5.9" style="fill:var(--caramel)"/></symbol>
-  <symbol id="s-van" viewBox="0 0 204 78"><path style="fill:var(--chalk)" d="M6 58 L6 14 Q6 6 14 6 L150 6 Q160 6 166 14 L182 36 L192 40 Q198 42 198 50 L198 60 Q198 64 194 64 L10 64 Q6 64 6 60 Z"/><path style="fill:#3a2416" d="M150 13 Q157 13 161 18 L173 36 L148 36 Z"/><path style="fill:#3a2416" d="M106 14 L140 14 L140 36 L106 36 Z"/><rect x="190" y="44" width="7" height="5" rx="2" style="fill:#ffd9a0"/><circle cx="42" cy="64" r="13" style="fill:#0f0905"/><circle cx="42" cy="64" r="5.9" style="fill:var(--caramel)"/><circle cx="166" cy="64" r="13" style="fill:#0f0905"/><circle cx="166" cy="64" r="5.9" style="fill:var(--caramel)"/></symbol>
-  <symbol id="s-truck" viewBox="0 0 320 82"><rect x="4" y="6" width="212" height="52" rx="3" style="fill:var(--chalk)"/><rect x="4" y="56" width="212" height="5" style="fill:#2a1a10"/><text x="110" y="40" text-anchor="middle" style="fill:#2a1a10;font-family:'Exo 2',sans-serif;font-style:italic;font-weight:800;font-size:22px;letter-spacing:.5px">BLACK FLEET</text><path style="fill:var(--chalk)" d="M220 62 L220 22 Q220 14 228 14 L262 14 Q270 14 274 22 L292 40 L304 44 Q312 46 312 54 L312 62 Z"/><path style="fill:#3a2416" d="M246 20 L262 20 Q267 20 270 25 L282 40 L246 40 Z"/><rect x="305" y="47" width="7" height="5" rx="2" style="fill:#ffd9a0"/><circle cx="34" cy="64" r="11" style="fill:#0f0905"/><circle cx="34" cy="64" r="5.0" style="fill:var(--caramel)"/><circle cx="60" cy="64" r="11" style="fill:#0f0905"/><circle cx="60" cy="64" r="5.0" style="fill:var(--caramel)"/><circle cx="242" cy="64" r="11" style="fill:#0f0905"/><circle cx="242" cy="64" r="5.0" style="fill:var(--caramel)"/><circle cx="294" cy="64" r="11" style="fill:#0f0905"/><circle cx="294" cy="64" r="5.0" style="fill:var(--caramel)"/></symbol>
   <symbol id="v-car" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 24v-5l6-2 7-7h16l9 7 8 2v5H4Z"/><circle cx="15" cy="25" r="4"/><circle cx="41" cy="25" r="4"/></g></symbol>
   <symbol id="v-suv" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 25V15l5-1 5-7h24l6 7 8 2v9H4Z"/><circle cx="15" cy="26" r="4.5"/><circle cx="41" cy="26" r="4.5"/><path d="M12 4h28"/></g></symbol>
   <symbol id="v-van" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 25V7h32l8 6 8 3v9H4Z"/><circle cx="15" cy="26" r="4"/><circle cx="42" cy="26" r="4"/><path d="M36 7v7h12"/></g></symbol>
@@ -301,8 +297,8 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     <div class="sun"></div>
     <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
     <div class="road"></div>
-    <div class="lane far"><svg class="veh far f1" viewBox="0 0 204 76" aria-hidden="true"><use href="#s-suv"/></svg><svg class="veh far f2" viewBox="0 0 200 74" aria-hidden="true"><use href="#s-car"/></svg></div>
-    <div class="lane near"><svg class="veh near n1" viewBox="0 0 320 82" aria-hidden="true"><use href="#s-truck"/></svg><svg class="veh near n2" viewBox="0 0 200 74" aria-hidden="true"><use href="#s-car"/></svg><svg class="veh near n3" viewBox="0 0 204 78" aria-hidden="true"><use href="#s-van"/></svg><svg class="veh near n4" viewBox="0 0 204 76" aria-hidden="true"><use href="#s-suv"/></svg></div>
+    <div class="lane far"><img class="veh far f1" src="veh-van.webp" alt=""><img class="veh far f2" src="veh-suv.webp" alt=""></div>
+    <div class="lane near"><img class="veh near n1" src="veh-truck.webp" alt=""><img class="veh near n2" src="veh-van.webp" alt=""><img class="veh near n3" src="veh-suv.webp" alt=""></div>
   </div>
 
   <div class="wrap">
@@ -486,7 +482,7 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
       <div class="sun"></div>
       <div class="cloud c1"></div><div class="cloud c3"></div>
       <div class="road"></div>
-      <div class="lane near"><svg class="veh near w1" viewBox="0 0 204 78" aria-hidden="true"><use href="#s-van"/></svg><svg class="veh near w2" viewBox="0 0 320 82" aria-hidden="true"><use href="#s-truck"/></svg></div>
+      <div class="lane near"><img class="veh near w1" src="veh-suv.webp" alt=""><img class="veh near w2" src="veh-truck.webp" alt=""></div>
     </div>
     <button class="x" type="button" id="w-go" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div class="w-body">

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: cocoa-dark recruiting page. Logo hero beside the sign-up call, then vehicles, offer, steps, the registration form and contact. Caramel is the accent, used sparingly. */
+/* Layout: travel-portal pattern in cocoa. Brand bar, an animated dusk sky with trucks on a road, a registration card overlapping the sky (vehicle tabs on top), offer cards like price tiles, channel, steps, contact, bottom nav on phones. */
 :root{
   --asphalt:#1c120c;
   --tarmac:#26180f;
@@ -28,6 +28,10 @@
   --caramel:#d9a066;
   --caramel-hi:#e6b47e;
   --caramel-ink:#241207;
+  --sky-top:#1f130b;
+  --sky-mid:#4a2b18;
+  --sky-low:#8a5a33;
+  --road:#140d08;
   --tg:#2aa3e0;
   --wa:#25d366;
   --bad:#ff7a6b;
@@ -45,28 +49,91 @@ html{scroll-behavior:smooth}
 body{background:var(--asphalt);color:var(--chalk);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--asphalt)}
 a{color:inherit}
-.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{overflow-wrap:break-word;font-family:var(--display);font-style:italic;font-weight:800;line-height:1.08;letter-spacing:-.005em;text-wrap:balance;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{overflow-wrap:break-word;font-family:var(--display);font-style:italic;font-weight:800;line-height:1.1;letter-spacing:-.005em;text-wrap:balance;margin:0}
 .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin:0}
 :focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
 
-/* header */
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--asphalt) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:10px}
-.bar .brand img{height:30px;width:auto;display:block}
-.bar nav{display:flex;align-items:center;gap:22px;font-size:14px}
-.bar nav a{text-decoration:none;color:var(--dim);white-space:nowrap}
-.bar nav a:hover{color:var(--chalk)}
+/* brand bar */
+.top{background:var(--asphalt);position:relative;z-index:5}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:10px 0}
+.help{display:inline-flex;align-items:center;gap:7px;border:1px solid color-mix(in srgb,var(--wa) 55%,transparent);background:color-mix(in srgb,var(--wa) 10%,transparent);color:#7ee2a6;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap}
+.help svg{width:16px;height:16px}
+.brand{display:flex;justify-content:center;padding-block:12px 14px}
+.brand img{height:40px;width:auto;display:block}
 .langs{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;flex:none}
-.langs button{font-family:var(--mono);font-size:12px;background:none;border:0;color:var(--dim);border-radius:999px;padding:6px 10px;cursor:pointer;min-width:38px}
+.langs button{font-family:var(--mono);font-size:12px;background:none;border:0;color:var(--dim);border-radius:999px;padding:6px 9px;cursor:pointer;min-width:34px}
 .langs button[aria-pressed="true"]{background:var(--caramel);color:var(--caramel-ink)}
 .langs button:hover{color:var(--chalk)}
 .langs button[aria-pressed="true"]:hover{color:var(--caramel-ink)}
-@media (max-width:1020px){.bar nav a{display:none}}
-@media (max-width:420px){.bar .brand img{height:20px}.langs button{padding:6px 7px;min-width:32px;font-size:11px}}
+@media (max-width:380px){.help span{display:none}.langs button{padding:6px 6px;min-width:30px;font-size:11px}}
+
+/* animated sky + road */
+.sky{position:relative;height:250px;overflow:hidden;background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 50%,var(--sky-low) 72%,var(--road) 72.1%)}
+.sun{position:absolute;left:50%;bottom:16%;width:420px;height:420px;margin-left:-210px;border-radius:50%;background:radial-gradient(circle,rgba(255,196,128,.55),rgba(217,160,102,.18) 38%,transparent 66%)}
+.cloud{position:absolute;border-radius:999px;background:rgba(246,236,224,.10);filter:blur(1px)}
+.cloud::before,.cloud::after{content:"";position:absolute;border-radius:50%;background:inherit}
+.c1{width:170px;height:44px;top:38px;left:6%;animation:drift 38s ease-in-out infinite alternate}
+.c1::before{width:80px;height:80px;left:24px;top:-40px}.c1::after{width:56px;height:56px;left:92px;top:-26px}
+.c2{width:220px;height:52px;top:92px;right:4%;opacity:.8;animation:drift 46s ease-in-out infinite alternate-reverse}
+.c2::before{width:96px;height:96px;left:40px;top:-50px}.c2::after{width:70px;height:70px;left:120px;top:-32px}
+.c3{width:120px;height:32px;top:24px;left:56%;opacity:.6;animation:drift 30s ease-in-out infinite alternate}
+.c3::before{width:54px;height:54px;left:18px;top:-28px}.c3::after{width:40px;height:40px;left:64px;top:-18px}
+@keyframes drift{to{transform:translateX(60px)}}
+.road{position:absolute;inset:auto 0 0;height:28%;background:var(--road)}
+.road::after{content:"";position:absolute;left:0;right:-90px;top:38%;height:4px;background:repeating-linear-gradient(90deg,var(--caramel) 0 46px,transparent 46px 90px);opacity:.85;animation:lane 1.1s linear infinite}
+@keyframes lane{to{transform:translateX(-90px)}}
+.truck{position:absolute;display:block;height:auto;filter:drop-shadow(0 8px 10px rgba(0,0,0,.45))}
+.t1{width:190px;bottom:16%;left:-220px;animation:driveR 13s linear infinite}
+.t2{width:110px;bottom:27%;left:-140px;opacity:.5;animation:driveR 21s linear infinite;animation-delay:-9s}
+@keyframes driveR{to{transform:translateX(calc(100vw + 520px))}}
+.bob{animation:bob .45s ease-in-out infinite alternate}
+@keyframes bob{to{translate:0 -1.5px}}
+@media (min-width:860px){.sky{height:360px}.t1{width:300px;left:-330px}.t2{width:170px;left:-200px}}
+@media (prefers-reduced-motion:reduce){.cloud,.road::after,.truck,.bob{animation:none!important}.t1{left:auto;right:8%}.t2{left:12%}}
+
+/* registration card overlapping the sky */
+.hero-card{position:relative;z-index:3;margin-top:-34px;background:var(--tarmac);border:1px solid var(--line);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.5);padding:0 0 18px;overflow:hidden}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px;background:var(--shoulder);border-bottom:1px solid var(--line)}
+.tab{display:grid;justify-items:center;gap:4px;background:none;border:0;border-radius:14px;color:var(--dim);font:inherit;font-size:13px;font-weight:600;padding:10px 4px;cursor:pointer;min-width:0}
+.tab svg{width:34px;height:22px}
+.tab[aria-pressed="true"]{background:var(--caramel);color:var(--caramel-ink)}
+.tab:hover{color:var(--chalk)}
+.tab[aria-pressed="true"]:hover{color:var(--caramel-ink)}
+.card-body{padding:20px 22px 4px;display:grid;gap:18px}
+.offer-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}
+.offer-strip h1{font-size:clamp(26px,4.2vw,40px)}
+.amt{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.amt b{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(34px,5vw,46px);line-height:1;color:var(--caramel);font-variant-numeric:tabular-nums}
+.amt span{font-weight:600}
+.daily{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:color-mix(in srgb,var(--wa) 12%,transparent);color:#8fe7b3;padding:6px 12px;font-size:14px;font-weight:600}
+.daily::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--wa);flex:none}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--chalk);border-radius:10px;padding:8px 14px;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--caramel);border-color:var(--caramel);color:var(--caramel-ink)}
+form{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.f.n3{grid-column:span 3}
+.f{display:grid;gap:6px;min-width:0}
+.f.wide{grid-column:span 2}
+.f.full{grid-column:1/-1}
+label{font-size:13px;color:var(--dim);font-weight:500}
+label b{color:var(--caramel);font-weight:600}
+input,textarea{width:100%;font:inherit;font-size:16px;color:var(--chalk);background:var(--asphalt);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--dim) 60%,transparent)}
+input:focus,textarea:focus{outline:none;border-color:var(--caramel)}
+input[aria-invalid="true"]{border-color:var(--bad)}
+textarea{resize:vertical;min-height:50px}
+.form-foot{grid-column:1/-1;display:grid;gap:12px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--dim);cursor:pointer}
+.consent input{width:20px;height:20px;flex:none;margin:1px 0 0;accent-color:var(--caramel);padding:0}
+.consent.bad span{color:var(--bad)}
+.err{color:var(--bad);font-size:14px;margin:0}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (max-width:760px){form{grid-template-columns:1fr 1fr}.f.wide,.f.n3{grid-column:1/-1}textarea{min-height:76px}}
+@media (max-width:480px){form{grid-template-columns:1fr}.f.wide,.f.n3{grid-column:auto}.card-body{padding:18px 16px 4px}.tab{font-size:12px}}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:600;font-size:15px;text-decoration:none;border-radius:8px;padding:13px 20px;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:600;font-size:15px;text-decoration:none;border-radius:12px;padding:13px 20px;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
 .btn:hover{transform:translateY(-1px)}
 .btn svg{width:20px;height:20px;flex:none}
 .btn-main{background:var(--caramel);color:var(--caramel-ink)}
@@ -75,62 +142,51 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:co
 .btn-wa{background:var(--wa);color:#04210f}
 .btn-ghost{border-color:var(--line);color:var(--chalk);background:transparent}
 .btn-ghost:hover{border-color:var(--dim)}
+.btn-big{width:100%;padding:16px;font-size:17px}
+#r-submit[disabled]{opacity:.7;cursor:progress}
+.alt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.alt small{color:var(--dim);font-size:13px}
+.alt .btn{padding:8px 14px;font-size:14px}
+@media (max-width:480px){.alt small{flex-basis:100%}.alt .btn{flex:1}}
 
-/* hero */
-.hero{border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 80% 30%,var(--shoulder),var(--asphalt) 70%)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:64px 72px}
-.hero h1{font-size:clamp(34px,5.2vw,62px);margin-block:16px 18px}
-.hero .lead{color:var(--dim);font-size:18px;max-width:36em;margin:0 0 28px}
-.chans{display:flex;flex-wrap:wrap;gap:10px}
-.paybadge{display:inline-grid;gap:6px;border:1px solid var(--caramel);border-radius:12px;padding:12px 18px;margin:0 0 26px;background:color-mix(in srgb,var(--caramel) 10%,transparent)}
-.pbrow{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
-.paybadge span{color:var(--chalk);font-size:17px;font-weight:600}
-.pbsub{color:var(--dim);font-size:15px;font-weight:500}
-.pbsub::before{content:"";display:inline-block;vertical-align:middle;width:8px;height:8px;margin-top:-2px;margin-inline-end:8px;border-radius:50%;background:var(--wa)}
-@media (max-width:860px){.paybadge{justify-items:center}.pbrow{justify-content:center}}
-.paybadge b{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(38px,5vw,52px);line-height:1;color:var(--caramel);font-variant-numeric:tabular-nums}
-.hero .chans .btn{padding:15px 20px;font-size:16px}
-.hero-logo{justify-self:center;width:100%;max-width:420px}
-.hero-logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
-.road{height:6px;background:repeating-linear-gradient(90deg,var(--caramel) 0 44px,transparent 44px 80px);opacity:.85}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:24px;padding-block:32px 48px;text-align:center}.hero-logo{order:-1;max-width:260px}.hero .lead{margin-inline:auto}.hero .chans{display:grid;grid-template-columns:1fr}}
+/* payment strip at the bottom of the card */
+.paystrip{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:4px 22px 0;padding-top:14px;border-top:1px solid var(--line)}
+.paystrip .lbl{color:var(--dim);font-size:13px;margin-inline-end:4px}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--shoulder);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500}
+.chip svg{width:15px;height:15px;color:var(--caramel)}
+@media (max-width:480px){.paystrip{margin-inline:16px}}
+
+/* thank-you */
+.ok{display:grid;gap:14px;justify-items:start;padding:8px 0 4px}
+.ok .tick{width:56px;height:56px;border-radius:50%;background:var(--caramel);display:grid;place-items:center;color:var(--caramel-ink)}
+.ok .tick svg{width:28px;height:28px}
+.ok h3{font-size:clamp(24px,3vw,30px)}
+.ok p{margin:0;color:var(--dim);max-width:36em}
 
 /* sections */
-section.block{padding-block:80px}
-.head{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:36px;max-width:660px}
-.head h2{font-size:clamp(30px,4.4vw,46px)}
+section.block{padding-block:72px}
+.head{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-bottom:28px;max-width:660px}
+.head h2{font-size:clamp(28px,4vw,42px)}
 .head p{color:var(--dim);margin:0}
-@media (max-width:640px){section.block{padding-block:56px}}
+@media (max-width:640px){section.block{padding-block:52px}}
 
-/* vehicles */
-.veh{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.v{background:var(--tarmac);border:1px solid var(--line);border-radius:14px;padding:24px 20px;display:grid;gap:8px;align-content:start;min-width:0}
-.v svg{width:56px;height:36px;color:var(--caramel);margin-bottom:6px}
-.v h3{font-size:21px}
-.v p{margin:0;color:var(--dim);font-size:14px}
-@media (max-width:860px){.veh{grid-template-columns:1fr 1fr}}
-@media (max-width:380px){.veh{grid-template-columns:1fr}}
-
-/* offer */
-.offer{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start;background:linear-gradient(135deg,var(--shoulder),var(--tarmac));border:1px solid var(--line);border-radius:16px;padding:40px}
-.offer .head{margin:0}
-.offer ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
-.offer-cta{grid-column:1/-1;justify-self:start;padding:15px 26px;font-size:16px}
-@media (max-width:860px){.offer-cta{justify-self:stretch}}
-.offer li{display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:17px}
-.offer li::before{content:"";flex:none;width:24px;height:24px;margin-top:1px;border-radius:50%;background:var(--caramel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23241207' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
-@media (max-width:860px){.offer{grid-template-columns:1fr;padding:26px 20px;gap:24px}}
+/* offer tiles (styled like price cards) */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile{background:var(--tarmac);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;display:grid;gap:4px;align-content:start;min-width:0}
+.tile b{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(22px,3vw,30px);line-height:1.15;color:var(--caramel)}
+.tile span{color:var(--dim);font-size:14px}
+@media (max-width:760px){.tiles{grid-template-columns:1fr 1fr}}
 
 /* telegram channel */
-.channel{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;border:1px solid color-mix(in srgb,var(--tg) 55%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--tg) 16%,var(--tarmac)),var(--tarmac));border-radius:16px;padding:28px 30px}
+.channel{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;border:1px solid color-mix(in srgb,var(--tg) 55%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--tg) 16%,var(--tarmac)),var(--tarmac));border-radius:18px;padding:26px 28px}
 .ch-ico{width:64px;height:64px;border-radius:50%;background:var(--tg);display:grid;place-items:center;color:#fff}
 .ch-ico svg{width:32px;height:32px}
 .ch-text{display:grid;gap:6px;min-width:0}
 .ch-text .eyebrow{color:var(--tg)}
-.ch-text h2{font-size:clamp(24px,3vw,32px)}
+.ch-text h2{font-size:clamp(22px,3vw,30px)}
 .ch-text p{margin:0;color:var(--dim)}
 .ch-btn{padding:15px 22px;font-size:16px}
-@media (max-width:760px){.channel{grid-template-columns:1fr;justify-items:start;padding:24px 20px;gap:16px}.ch-btn{justify-self:stretch}}
+@media (max-width:760px){.channel{grid-template-columns:1fr;justify-items:start;padding:22px 18px;gap:14px}.ch-btn{justify-self:stretch}}
 
 /* steps: a real sequence */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
@@ -140,82 +196,63 @@ section.block{padding-block:80px}
 .step p{margin:0;color:var(--dim);font-size:15px}
 @media (max-width:760px){.steps{grid-template-columns:1fr;gap:40px}}
 
-/* registration */
-.reg{background:var(--tarmac);border-block:1px solid var(--line)}
-.r-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
-@media (max-width:900px){.r-grid{grid-template-columns:1fr;gap:28px}}
-form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.f{display:grid;gap:6px;min-width:0}
-.f.full{grid-column:1/-1}
-label{font-size:13px;color:var(--dim);font-weight:500}
-label b{color:var(--caramel);font-weight:600}
-input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--chalk);background:var(--asphalt);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
-input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--dim) 60%,transparent)}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--caramel)}
-input[aria-invalid="true"]{border-color:var(--bad)}
-textarea{resize:vertical;min-height:84px}
-.form-foot{grid-column:1/-1;display:grid;gap:12px}
-.err{color:var(--bad);font-size:14px;margin:0}
-.send-row{display:flex;flex-wrap:wrap;gap:10px}
-.send-row .btn{padding:10px 16px;font-size:14px}
-#r-submit{justify-self:start;padding:15px 26px;font-size:16px}
-#r-submit[disabled]{opacity:.7;cursor:progress}
-.or{color:var(--dim);font-size:13px}
-.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-@media (max-width:560px){#r-submit{justify-self:stretch}}
-.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--dim);cursor:pointer}
-.consent input{width:20px;height:20px;flex:none;margin:1px 0 0;accent-color:var(--caramel);padding:0}
-.consent.bad span{color:var(--bad)}
-.ok{display:grid;gap:14px;justify-items:start;background:var(--asphalt);border:1px solid var(--line);border-radius:14px;padding:32px 28px}
-.ok .tick{width:56px;height:56px;border-radius:50%;background:var(--caramel);display:grid;place-items:center;color:var(--caramel-ink)}
-.ok .tick svg{width:28px;height:28px}
-.ok h3{font-size:clamp(24px,3vw,30px)}
-.ok p{margin:0;color:var(--dim);max-width:34em}
-.privacy{border-top:1px solid var(--line);padding-block:28px}
-.privacy h2{font-size:18px;font-style:normal;margin-bottom:6px}
-.privacy p{margin:0;color:var(--dim);font-size:14px;max-width:70ch}
-footer a{color:var(--dim)}
-@media (max-width:560px){form{grid-template-columns:1fr}.send-row .btn{flex:1 1 100%}}
-
 /* contact */
-.contact{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.ct{border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px;align-content:start;min-width:0;background:var(--tarmac)}
-.ct .val{font-family:var(--mono);font-size:clamp(15px,1.6vw,17px);overflow-wrap:anywhere;user-select:all}
+.contact{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ct{border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0;background:var(--tarmac)}
+.ct .val{font-family:var(--mono);font-size:15px;overflow-wrap:anywhere;user-select:all}
 .ct .row{display:flex;flex-wrap:wrap;gap:10px}
 .ct .btn{padding:9px 16px;font-size:14px}
-.copy{font:inherit;font-size:13px;background:none;border:1px solid var(--line);color:var(--chalk);border-radius:8px;padding:8px 14px;cursor:pointer}
+.copy{font:inherit;font-size:13px;background:none;border:1px solid var(--line);color:var(--chalk);border-radius:10px;padding:8px 14px;cursor:pointer}
 .copy:hover{border-color:var(--dim)}
-.paybar{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
-.paybar span.lbl{color:var(--dim);font-size:14px;margin-inline-end:6px}
-.chip{display:inline-flex;align-items:center;gap:8px;background:var(--shoulder);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500}
-.chip svg{width:16px;height:16px;color:var(--caramel)}
-@media (max-width:1100px){.contact{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.contact{grid-template-columns:1fr}}
+@media (max-width:1000px){.contact{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.contact{grid-template-columns:1fr}}
 
-footer{border-top:1px solid var(--line);padding-block:30px calc(30px + 70px);color:var(--dim);font-size:13px}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.privacy{border-top:1px solid var(--line);padding-block:26px}
+.privacy h2{font-size:18px;font-style:normal;margin-bottom:6px}
+.privacy p{margin:0;color:var(--dim);font-size:14px;max-width:70ch}
+footer{border-top:1px solid var(--line);padding-block:28px;color:var(--dim);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center}
 footer img{height:22px;width:auto;opacity:.85}
+footer a{color:var(--dim)}
 footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font-size:15px;color:var(--chalk)}
 
+/* floating buttons (desktop) and bottom nav (phones) */
 .float{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));right:calc(16px + env(safe-area-inset-right,0px));z-index:30;display:grid;gap:10px}
 .float a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.5);color:#fff}
 .float a svg{width:28px;height:28px}
 .float .tg{background:var(--tg)}
 .float .wa{background:var(--wa)}
+.bnav{position:fixed;inset:auto 0 0;z-index:30;display:none;grid-template-columns:repeat(4,1fr);background:color-mix(in srgb,var(--tarmac) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+.bnav a{display:grid;justify-items:center;gap:2px;text-decoration:none;color:var(--dim);font-size:11px;font-weight:600;padding:4px 2px}
+.bnav a svg{width:22px;height:22px}
+.bnav a.on{color:var(--caramel)}
+.bnav a.wa{color:#5fdc93}
+.bnav a.tgc{color:#6cc4ef}
+@media (max-width:760px){.bnav{display:grid}.float{display:none}footer{padding-bottom:calc(28px + 64px + env(safe-area-inset-bottom,0px))}}
 
 /* welcome dialog */
 .welcome{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(15,9,5,.8);backdrop-filter:blur(6px)}
-.welcome .card{width:100%;max-width:470px;max-height:100%;overflow:auto;background:var(--tarmac);border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-align:center;display:grid;gap:14px;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .35s ease-out}
-.welcome img{width:170px;height:auto;margin:0 auto}
-.welcome h2{font-size:clamp(24px,5.6vw,32px)}
-.welcome p{margin:0;color:var(--dim)}
-.welcome .langs{justify-self:center}
-.w-offer{justify-self:center;display:flex;align-items:baseline;flex-wrap:wrap;justify-content:center;gap:4px 10px;border:1px solid var(--caramel);border-radius:12px;padding:10px 18px;background:color-mix(in srgb,var(--caramel) 12%,transparent)}
-.w-offer b{font-family:var(--display);font-style:italic;font-weight:800;font-size:34px;line-height:1;color:var(--caramel)}
+.welcome .card{position:relative;width:100%;max-width:440px;max-height:100%;overflow:auto;background:var(--tarmac);border:1px solid var(--line);border-radius:24px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .35s ease-out}
+.w-sky{position:relative;height:150px;overflow:hidden;background:linear-gradient(180deg,var(--sky-top),var(--sky-mid) 60%,var(--sky-low) 80%,var(--road) 80.1%)}
+.w-sky .sun{width:240px;height:240px;margin-left:-120px;bottom:6%}
+.w-sky .road{height:22%}
+.w-sky .t1{width:190px;bottom:7%;left:50%;margin-left:-95px;animation:none}
+.w-sky .c1{top:22px;left:8%}.w-sky .c3{top:30px;left:62%}
+.x{position:absolute;top:12px;inset-inline-start:12px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(246,236,224,.92);color:var(--caramel-ink);display:grid;place-items:center;cursor:pointer}
+.x svg{width:18px;height:18px}
+.w-body{display:grid;gap:14px;padding:20px 22px 22px}
+.w-body h2{font-size:clamp(23px,5.4vw,30px)}
+.w-body p{margin:0;color:var(--dim)}
+.w-offer{justify-self:center;display:flex;align-items:baseline;flex-wrap:wrap;justify-content:center;gap:4px 10px;border:1px solid var(--caramel);border-radius:14px;padding:10px 18px;background:color-mix(in srgb,var(--caramel) 12%,transparent)}
+.w-offer b{font-family:var(--display);font-style:italic;font-weight:800;font-size:32px;line-height:1;color:var(--caramel)}
 .w-offer span{font-weight:600}
-.welcome .stack{display:grid;gap:10px}
-.welcome .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.welcome .go{background:none;border:0;color:var(--chalk);font:inherit;font-weight:600;padding:8px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.w-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.w-tile span,.tab span{line-height:1.25}
+.w-tile{display:grid;justify-items:center;gap:6px;border:1px solid var(--line);background:var(--asphalt);border-radius:14px;padding:12px 4px;color:var(--chalk);font:inherit;font-size:12px;font-weight:600;cursor:pointer;min-width:0}
+.w-tile svg{width:34px;height:22px;color:var(--caramel)}
+.w-tile:hover{border-color:var(--caramel)}
+.w-body .langs{justify-self:center}
+.w-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @keyframes pop{from{transform:translateY(12px) scale(.98)}to{transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.welcome .card{animation:none}}
 </style>
@@ -225,91 +262,113 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
   <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5l18-6.9c.8-.3 1.6.2 1.3 1.1Z"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
   <symbol id="i-form" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h12V9.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></g></symbol>
+  <symbol id="v-car" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 24v-5l6-2 7-7h16l9 7 8 2v5H4Z"/><circle cx="15" cy="25" r="4"/><circle cx="41" cy="25" r="4"/></g></symbol>
+  <symbol id="v-suv" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 25V15l5-1 5-7h24l6 7 8 2v9H4Z"/><circle cx="15" cy="26" r="4.5"/><circle cx="41" cy="26" r="4.5"/><path d="M12 4h28"/></g></symbol>
+  <symbol id="v-van" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M4 25V7h32l8 6 8 3v9H4Z"/><circle cx="15" cy="26" r="4"/><circle cx="42" cy="26" r="4"/><path d="M36 7v7h12"/></g></symbol>
+  <symbol id="v-truck" viewBox="0 0 56 36"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M2 25V5h32v20M34 11h10l8 7v7H34"/><circle cx="11" cy="27" r="3.5"/><circle cx="21" cy="27" r="3.5"/><circle cx="44" cy="27" r="3.5"/></g></symbol>
 </svg>
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="#top" aria-label="Black Fleet Transport"><img src="logo.png" alt="Black Fleet Transport"></a>
-    <nav>
-      <a href="#vehicles" data-i="nav_veh">Vehicles</a>
-      <a href="#offer" data-i="nav_offer">What we offer</a>
-      <a href="#register" data-i="nav_reg">Register</a>
-      <a href="#contact" data-i="nav_contact">Contact</a>
-    </nav>
-    <div class="langs" role="group" aria-label="Language">
-      <button type="button" data-lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
-      <button type="button" data-lang="uk" aria-pressed="false">UA</button>
-      <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+<div class="top" id="top">
+  <div class="wrap">
+    <div class="top-row">
+      <a class="help" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-help"/></svg><span data-i="help">Need help?</span></a>
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+        <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+        <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+      </div>
+    </div>
+    <div class="brand"><img src="logo.png" alt="Black Fleet Transport"></div>
+  </div>
+</div>
+
+<main>
+  <div class="sky" aria-hidden="true">
+    <div class="sun"></div>
+    <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+    <div class="road"></div>
+    <img class="truck t2" src="truck.png" alt="">
+    <img class="truck t1" src="truck.png" alt="">
+  </div>
+
+  <div class="wrap">
+    <div class="hero-card" id="register">
+      <div class="tabs" role="group" aria-label="Vehicle">
+        <button class="tab" type="button" data-veh="0" aria-pressed="false"><svg aria-hidden="true"><use href="#v-car"/></svg><span data-i="t1">Car</span></button>
+        <button class="tab" type="button" data-veh="1" aria-pressed="false"><svg aria-hidden="true"><use href="#v-suv"/></svg><span data-i="t2">SUV</span></button>
+        <button class="tab" type="button" data-veh="2" aria-pressed="false"><svg aria-hidden="true"><use href="#v-van"/></svg><span data-i="t3">Van</span></button>
+        <button class="tab" type="button" data-veh="3" aria-pressed="true"><svg aria-hidden="true"><use href="#v-truck"/></svg><span data-i="t4">Truck</span></button>
+      </div>
+      <div class="card-body">
+        <div class="offer-strip">
+          <div>
+            <h1 data-i="hero_h">Earn €2,000 for every trip</h1>
+          </div>
+          <span class="daily" data-i="pb3">Paid daily, right after each trip ends</span>
+        </div>
+        <div class="pills" role="group" aria-label="Ownership">
+          <button class="pill" type="button" data-own="1" aria-pressed="true" data-i="own">Own vehicle</button>
+          <button class="pill" type="button" data-own="0" aria-pressed="false" data-i="rented">Rented vehicle</button>
+        </div>
+        <form id="rform" novalidate>
+          <div class="f"><label for="r-name"><span data-i="l_name">Full name</span> <b>*</b></label><input id="r-name" autocomplete="name"></div>
+          <div class="f"><label for="r-phone"><span data-i="l_phone">Phone (WhatsApp / Telegram)</span> <b>*</b></label><input id="r-phone" type="tel" autocomplete="tel" placeholder="+40 7xx xxx xxx"></div>
+          <div class="f"><label for="r-country" data-i="l_country">Country and city you are in</label><input id="r-country" autocomplete="off"></div>
+          <div class="f"><label for="r-lic" data-i="l_lic">Licence category</label><input id="r-lic" placeholder="B, C, CE" autocomplete="off"></div>
+          <div class="f"><label for="r-exp" data-i="l_exp">Driving experience (years)</label><input id="r-exp" inputmode="numeric" placeholder="5" autocomplete="off"></div>
+          <div class="f n3"><label for="r-notes" data-i="l_notes">Anything else</label><textarea id="r-notes" rows="1" data-i-ph="ph_notes" placeholder="Languages you speak, when you can start, questions"></textarea></div>
+          <div class="hp" aria-hidden="true"><label for="r-website">Website</label><input id="r-website" tabindex="-1" autocomplete="off"></div>
+          <div class="form-foot">
+            <label class="consent" id="r-consent-row"><input type="checkbox" id="r-consent"><span data-i="consent">I agree that Black Fleet Transport uses my details only to contact me about work opportunities.</span></label>
+            <p class="err" id="r-err" data-i="err" hidden>Please enter your name and phone number.</p>
+            <p class="err" id="r-err2" data-i="err_consent" hidden>Please tick the consent box.</p>
+            <p class="err" id="r-err3" data-i="send_fail" hidden>Could not send the form. Check your internet, or send it on WhatsApp below.</p>
+            <button class="btn btn-main btn-big" id="r-submit" type="submit"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="submit">Submit registration</span></button>
+            <div class="alt">
+              <small data-i="or_msg">Or send it as a message:</small>
+              <a class="btn btn-wa" id="r-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+              <button class="btn btn-tg" id="r-tg" type="button"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</button>
+            </div>
+          </div>
+        </form>
+        <div class="ok" id="r-ok" role="status" hidden>
+          <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+          <h3 data-i="ok_h">Thank you! Your application is ready</h3>
+          <p id="ok-msg" data-i="ok_wa">Press Send in WhatsApp so it reaches us. Our team will contact you soon with the details.</p>
+          <div class="alt" id="ok-msgr">
+            <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
+            <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+          </div>
+          <button class="btn btn-ghost" type="button" id="ok-again" data-i="ok_again">Fill in another application</button>
+        </div>
+      </div>
+      <div class="paystrip">
+        <span class="lbl" data-i="pay">How we pay you</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2 2 0 0 1 0 4h-4m0 0h4.5a2 2 0 0 1 0 4h-4.5m0-8v8"/></svg><span data-i="pay1">Cryptocurrency</span></span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>Revolut</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.6"/></svg><span data-i="pay3">Cash</span></span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg><span data-i="pay4">Bank transfer</span></span>
+      </div>
     </div>
   </div>
-</header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow" data-i="hero_eye">Driver network · Europe</p>
-        <h1 data-i="hero_h">Earn €2,000 for every trip</h1>
-        <p class="lead" data-i="hero_p">We welcome professional drivers, men and women, who want to work in transport across Europe. Register with your own or rented car, SUV, van or truck.</p>
-        <div class="paybadge"><div class="pbrow"><b data-i="pb_amt">€2,000</b><span data-i="pb2">per trip</span></div><div class="pbsub" data-i="pb3">Paid daily, right after each trip ends</div></div>
-        <div class="chans">
-          <a class="btn btn-main" href="#register"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
-          <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
-          <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        </div>
-      </div>
-      <div class="hero-logo"><img src="logo-shield.png" alt="Black Fleet Transport"></div>
-    </div>
-    <div class="road" aria-hidden="true"></div>
-  </section>
-
-  <section class="block" id="vehicles">
+  <section class="block" id="offer">
     <div class="wrap">
       <div class="head">
-        <p class="eyebrow" data-i="v_eye">Vehicles</p>
-        <h2 data-i="v_h">What do you drive?</h2>
-        <p data-i="v_p">We accept applications from drivers with any of these vehicles.</p>
+        <p class="eyebrow" data-i="o_eye">What we offer</p>
+        <h2 data-i="o_h">Why join Black Fleet</h2>
       </div>
-      <div class="veh">
-        <div class="v">
-          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 24v-5l6-2 7-7h16l9 7 8 2v5H4Z"/><circle cx="15" cy="25" r="4" fill="var(--tarmac)"/><circle cx="41" cy="25" r="4" fill="var(--tarmac)"/><path d="M19 17h20"/></svg>
-          <h3 data-i="v1h">Car</h3><p data-i="v1p">Your own or a rented car</p>
-        </div>
-        <div class="v">
-          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 25V15l5-1 5-7h24l6 7 8 2v9H4Z"/><circle cx="15" cy="26" r="4.5" fill="var(--tarmac)"/><circle cx="41" cy="26" r="4.5" fill="var(--tarmac)"/><path d="M16 14h26M27 7v7M12 4h28"/></svg>
-          <h3 data-i="v2h">SUV / 4×4</h3><p data-i="v2p">Four-wheel drive vehicles</p>
-        </div>
-        <div class="v">
-          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 25V7h32l8 6 8 3v9H4Z"/><circle cx="15" cy="26" r="4" fill="var(--tarmac)"/><circle cx="42" cy="26" r="4" fill="var(--tarmac)"/><path d="M36 7v7h12"/></svg>
-          <h3 data-i="v3h">Van</h3><p data-i="v3p">Cargo and passenger vans</p>
-        </div>
-        <div class="v">
-          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 25V5h32v20M34 11h10l8 7v7H34"/><circle cx="11" cy="27" r="3.5" fill="var(--tarmac)"/><circle cx="21" cy="27" r="3.5" fill="var(--tarmac)"/><circle cx="44" cy="27" r="3.5" fill="var(--tarmac)"/><path d="M38 11v7h14"/></svg>
-          <h3 data-i="v4h">Truck</h3><p data-i="v4p">Trucks and tractor units</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="offer" style="padding-top:0">
-    <div class="wrap">
-      <div class="offer">
-        <div class="head">
-          <p class="eyebrow" data-i="o_eye">What we offer</p>
-          <h2 data-i="o_h">Why join Black Fleet</h2>
-        </div>
-        <ul>
-          <li data-i="o0">€2,000 for every trip, paid daily after each trip ends</li>
-          <li data-i="o1">Transport job opportunities, depending on availability</li>
-          <li data-i="o2">Direct contact with our management and dispatch team</li>
-          <li data-i="o3">Register with your own vehicle</li>
-          <li data-i="o4">Organised driver requests and communication</li>
-          <li data-i="o5">Information about available transport jobs</li>
-        </ul>
-        <a class="btn btn-main offer-cta" href="#register"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
+      <div class="tiles">
+        <div class="tile"><b data-i="pb_amt">€2,000</b><span data-i="pb2">per trip</span></div>
+        <div class="tile"><b data-i="c2t">Daily</b><span data-i="c2s">payment after each trip</span></div>
+        <div class="tile"><b data-i="c3t">Europe</b><span data-i="c3s">transport work across Europe</span></div>
+        <div class="tile"><b data-i="c4t">Direct</b><span data-i="c4s">contact with dispatch</span></div>
+        <div class="tile"><b data-i="c5t">Your vehicle</b><span data-i="c5s">car, SUV, van or truck, own or rented</span></div>
+        <div class="tile"><b data-i="c6t">Men &amp; women</b><span data-i="c6s">all professional drivers are welcome</span></div>
       </div>
     </div>
   </section>
@@ -342,56 +401,7 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     </div>
   </section>
 
-  <section class="block reg" id="register">
-    <div class="wrap r-grid">
-      <div class="head" style="margin:0">
-        <p class="eyebrow" data-i="r_eye">Registration</p>
-        <h2 data-i="r_h">Join the driver team</h2>
-        <p data-i="r_p">Fill in your details and press Submit. Our team receives your registration right away.</p>
-      </div>
-      <form id="rform" novalidate>
-        <div class="f"><label for="r-name"><span data-i="l_name">Full name</span> <b>*</b></label><input id="r-name" autocomplete="name"></div>
-        <div class="f"><label for="r-phone"><span data-i="l_phone">Phone (WhatsApp / Telegram)</span> <b>*</b></label><input id="r-phone" type="tel" autocomplete="tel" placeholder="+40 7xx xxx xxx"></div>
-        <div class="f"><label for="r-country" data-i="l_country">Country and city you are in</label><input id="r-country" autocomplete="off"></div>
-        <div class="f"><label for="r-veh" data-i="l_veh">Vehicle</label>
-          <select id="r-veh">
-            <option data-i="ve1">Own car</option>
-            <option data-i="ve2">Rented car</option>
-            <option data-i="ve3">SUV / 4×4</option>
-            <option data-i="ve4">Van</option>
-            <option data-i="ve5">Truck</option>
-          </select></div>
-        <div class="f"><label for="r-lic" data-i="l_lic">Licence category</label><input id="r-lic" placeholder="B, C, CE" autocomplete="off"></div>
-        <div class="f"><label for="r-exp" data-i="l_exp">Driving experience (years)</label><input id="r-exp" inputmode="numeric" placeholder="5" autocomplete="off"></div>
-        <div class="f full"><label for="r-notes" data-i="l_notes">Anything else</label><textarea id="r-notes" data-i-ph="ph_notes" placeholder="Languages you speak, when you can start, questions"></textarea></div>
-        <div class="hp" aria-hidden="true"><label for="r-website">Website</label><input id="r-website" tabindex="-1" autocomplete="off"></div>
-        <div class="form-foot">
-          <label class="consent" id="r-consent-row"><input type="checkbox" id="r-consent"><span data-i="consent">I agree that Black Fleet Transport uses my details only to contact me about work opportunities.</span></label>
-          <p class="err" id="r-err" data-i="err" hidden>Please enter your name and phone number.</p>
-          <p class="err" id="r-err2" data-i="err_consent" hidden>Please tick the consent box.</p>
-          <p class="err" id="r-err3" data-i="send_fail" hidden>Could not send the form. Check your internet, or send it on WhatsApp below.</p>
-          <button class="btn btn-main" id="r-submit" type="submit"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="submit">Submit registration</span></button>
-          <small class="or" data-i="or_msg">Or send it as a message:</small>
-          <div class="send-row">
-            <a class="btn btn-wa" id="r-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span data-i="send_wa">Send via WhatsApp</span></a>
-            <button class="btn btn-tg" id="r-tg" type="button"><svg aria-hidden="true"><use href="#i-tg"/></svg><span data-i="send_tg">Copy and open Telegram</span></button>
-          </div>
-        </div>
-      </form>
-      <div class="ok" id="r-ok" role="status" hidden>
-        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
-        <h3 data-i="ok_h">Thank you! Your application is ready</h3>
-        <p id="ok-msg" data-i="ok_wa">Press Send in WhatsApp so it reaches us. Our team will contact you soon with the details.</p>
-        <div class="send-row" id="ok-msgr">
-          <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
-          <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-        </div>
-        <button class="btn btn-ghost" type="button" id="ok-again" data-i="ok_again">Fill in another application</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="contact">
+  <section class="block" id="contact" style="padding-top:0">
     <div class="wrap">
       <div class="head">
         <p class="eyebrow" data-i="c_eye">Contact</p>
@@ -429,15 +439,9 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
           </div>
         </div>
       </div>
-      <div class="paybar">
-        <span class="lbl" data-i="pay">How we pay you</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2 2 0 0 1 0 4h-4m0 0h4.5a2 2 0 0 1 0 4h-4.5m0-8v8"/></svg><span data-i="pay1">Cryptocurrency</span></span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>Revolut</span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.6"/></svg><span data-i="pay3">Cash</span></span>
-        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg><span data-i="pay4">Bank transfer</span></span>
-      </div>
     </div>
   </section>
+
   <section class="privacy" id="privacy">
     <div class="wrap">
       <h2 data-i="priv_h">Privacy</h2>
@@ -454,33 +458,50 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
   </div>
 </footer>
 
-<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-h" hidden>
-  <div class="card">
-    <img src="logo-shield.png" alt="Black Fleet Transport">
-    <h2 id="w-h" data-i="w_h">Welcome to Black Fleet Transport</h2>
-    <p data-i="w_p">Your gateway to new work opportunities in transport across Europe. Choose your language to continue.</p>
-    <div class="w-offer"><b data-i="w_amt">€2,000</b><span data-i="w_offer">per trip · paid daily</span></div>
-    <div class="langs" role="group" aria-label="Language">
-      <button type="button" data-lang="en" aria-pressed="true">EN</button>
-      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
-      <button type="button" data-lang="uk" aria-pressed="false">UA</button>
-      <button type="button" data-lang="ro" aria-pressed="false">RO</button>
-    </div>
-    <div class="stack">
-      <a class="btn btn-main" href="#register" data-close><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
-      <div class="two">
-        <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener" data-close><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
-        <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener" data-close><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
-      </div>
-    </div>
-    <a class="btn btn-ghost" href="https://t.me/+JkLnwG2xeAs4MzQ0" target="_blank" rel="noopener" data-close style="border-color:var(--tg)"><svg aria-hidden="true" style="color:var(--tg)"><use href="#i-tg"/></svg><span data-i="ch_btn">Join the channel</span></a>
-    <button class="go" type="button" id="w-go" data-i="w_go">Continue to site</button>
-  </div>
-</div>
-
 <div class="float">
   <a class="tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="#i-tg"/></svg></a>
   <a class="wa" href="https://wa.me/359895308410" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+</div>
+
+<nav class="bnav" aria-label="Quick links">
+  <a class="on" href="#top"><svg aria-hidden="true"><use href="#i-home"/></svg><span data-i="b_home">Home</span></a>
+  <a href="#register"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="nav_reg">Register</span></a>
+  <a class="tgc" href="https://t.me/+JkLnwG2xeAs4MzQ0" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg><span data-i="b_ch">Channel</span></a>
+  <a class="wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+</nav>
+
+<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-h" hidden>
+  <div class="card">
+    <div class="w-sky" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="cloud c1"></div><div class="cloud c3"></div>
+      <div class="road"></div>
+      <img class="truck t1 bob" src="truck.png" alt="">
+    </div>
+    <button class="x" type="button" id="w-go" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="w-body">
+      <h2 id="w-h" data-i="w_h">Welcome to Black Fleet Transport</h2>
+      <div class="w-offer"><b data-i="w_amt">€2,000</b><span data-i="w_offer">per trip · paid daily</span></div>
+      <p data-i="w_p">Your gateway to new work opportunities in transport across Europe. Choose your language to continue.</p>
+      <div class="w-tiles">
+        <button class="w-tile" type="button" data-wveh="0"><svg aria-hidden="true"><use href="#v-car"/></svg><span data-i="t1">Car</span></button>
+        <button class="w-tile" type="button" data-wveh="1"><svg aria-hidden="true"><use href="#v-suv"/></svg><span data-i="t2">SUV</span></button>
+        <button class="w-tile" type="button" data-wveh="2"><svg aria-hidden="true"><use href="#v-van"/></svg><span data-i="t3">Van</span></button>
+        <button class="w-tile" type="button" data-wveh="3"><svg aria-hidden="true"><use href="#v-truck"/></svg><span data-i="t4">Truck</span></button>
+      </div>
+      <a class="btn btn-main btn-big" href="#register" data-close><span data-i="btn_reg">Register now</span></a>
+      <div class="w-two">
+        <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener" data-close><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        <a class="btn btn-tg" href="https://t.me/+JkLnwG2xeAs4MzQ0" target="_blank" rel="noopener" data-close><svg aria-hidden="true"><use href="#i-tg"/></svg><span data-i="b_ch">Channel</span></a>
+      </div>
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+        <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+        <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -528,10 +549,19 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     m_hello:"Bună ziua, Black Fleet Transport! Vreau să mă alătur echipei de șoferi:",m_name:"Nume: ",m_phone:"Telefon: ",m_country:"Locație: ",m_veh:"Vehicul: ",m_lic:"Permis: ",m_exp:"Experiență: ",m_notes:"Detalii: "}
   };
   var EN={sending:"Sending…",ok_sent_h:"Thank you! Your registration was received",ok_sent:"Our team will contact you soon with the details. For a faster answer, message us on Telegram or WhatsApp.",ok_tg:"The text is copied. Paste it in our Telegram chat and send it. Our team will contact you soon with the details.",copied:"Copied",m_hello:"Hello Black Fleet Transport, I want to join the driver team:",m_name:"Name: ",m_phone:"Phone: ",m_country:"Location: ",m_veh:"Vehicle: ",m_lic:"Licence: ",m_exp:"Experience: ",m_notes:"Notes: "};
+  var NEW={
+    ru:{t1:"Авто",t2:"Джип / 4×4",t3:"Фургон",t4:"Грузовик",help:"Нужна помощь?",own:"Свой транспорт",rented:"Арендованный",b_home:"Главная",b_ch:"Канал",
+      c2t:"Ежедневно",c2s:"оплата после каждого рейса",c3t:"Европа",c3s:"работа в перевозках по Европе",c4t:"Напрямую",c4s:"связь с диспетчером",c5t:"Ваш транспорт",c5s:"авто, внедорожник, фургон или грузовик, свой или арендованный",c6t:"Мужчины и женщины",c6s:"приглашаем всех профессиональных водителей"},
+    uk:{t1:"Авто",t2:"Джип / 4×4",t3:"Фургон",t4:"Вантажівка",help:"Потрібна допомога?",own:"Власний транспорт",rented:"Орендований",b_home:"Головна",b_ch:"Канал",
+      c2t:"Щодня",c2s:"оплата після кожного рейсу",c3t:"Європа",c3s:"робота в перевезеннях по Європі",c4t:"Напряму",c4s:"зв'язок із диспетчером",c5t:"Ваш транспорт",c5s:"авто, позашляховик, фургон чи вантажівка, власні або орендовані",c6t:"Чоловіки та жінки",c6s:"запрошуємо всіх професійних водіїв"},
+    ro:{t1:"Mașină",t2:"SUV",t3:"Dubă",t4:"Camion",help:"Ai nevoie de ajutor?",own:"Vehicul propriu",rented:"Vehicul închiriat",b_home:"Acasă",b_ch:"Canal",
+      c2t:"Zilnic",c2s:"plată după fiecare cursă",c3t:"Europa",c3s:"muncă în transport în Europa",c4t:"Direct",c4s:"legătură cu dispeceratul",c5t:"Vehiculul tău",c5s:"autoturism, SUV, dubă sau camion, propriu sau închiriat",c6t:"Bărbați și femei",c6s:"toți șoferii profesioniști sunt bineveniți"}
+  };
+  Object.keys(NEW).forEach(function(l){var o=T[l];Object.keys(NEW[l]).forEach(function(k){o[k]=NEW[l][k]})});
   document.querySelectorAll("[data-i]").forEach(function(el){if(!(el.dataset.i in EN))EN[el.dataset.i]=el.textContent});
   document.querySelectorAll("[data-i-ph]").forEach(function(el){EN[el.dataset.iPh]=el.placeholder});
   T.en=EN;
-  var cur="en";
+  var cur="en", veh=3, own=true;
   function tr(k){return (T[cur]&&T[cur][k]!=null)?T[cur][k]:EN[k]}
   function apply(l){
     if(!T[l])l="en";cur=l;
@@ -544,18 +574,23 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
   }
   document.querySelectorAll("[data-lang]").forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.lang)})});
 
+  function setVeh(i){veh=i;document.querySelectorAll(".tab").forEach(function(b){b.setAttribute("aria-pressed",+b.dataset.veh===i?"true":"false")});build()}
+  function setOwn(o){own=o;document.querySelectorAll(".pill").forEach(function(b){b.setAttribute("aria-pressed",(b.dataset.own==="1")===o?"true":"false")});build()}
+  document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){setVeh(+b.dataset.veh)})});
+  document.querySelectorAll(".pill").forEach(function(b){b.addEventListener("click",function(){setOwn(b.dataset.own==="1")})});
+
   function v(id){return document.getElementById(id).value.trim()}
+  function vehText(){return tr("t"+(veh+1))+" · "+tr(own?"own":"rented")}
   function message(){
-    var sel=document.getElementById("r-veh");
     var lines=[tr("m_hello"),tr("m_name")+v("r-name"),tr("m_phone")+v("r-phone")];
     if(v("r-country"))lines.push(tr("m_country")+v("r-country"));
-    lines.push(tr("m_veh")+sel.options[sel.selectedIndex].text);
+    lines.push(tr("m_veh")+vehText());
     if(v("r-lic"))lines.push(tr("m_lic")+v("r-lic"));
     if(v("r-exp"))lines.push(tr("m_exp")+v("r-exp"));
     if(v("r-notes"))lines.push(tr("m_notes")+v("r-notes"));
     return lines.join("\n");
   }
-  function build(){document.getElementById("r-wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(message())}
+  function build(){var a=document.getElementById("r-wa");if(a)a.href="https://wa.me/"+WA+"?text="+encodeURIComponent(message())}
   function valid(){
     var ok=true;
     ["r-name","r-phone"].forEach(function(id){var el=document.getElementById(id),bad=!el.value.trim();el.setAttribute("aria-invalid",bad?"true":"false");if(bad)ok=false});
@@ -575,43 +610,39 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     var m=document.getElementById("ok-msg");m.dataset.i=mode;m.textContent=tr(mode);document.getElementById("ok-msgr").hidden=true;
     setTimeout(function(){form.hidden=true;var ok=document.getElementById("r-ok");ok.hidden=false;ok.scrollIntoView({block:"center",behavior:"smooth"})},400);
   }
-  document.getElementById("ok-again").addEventListener("click",function(){
-    form.reset();build();document.getElementById("r-ok").hidden=true;form.hidden=false;document.getElementById("r-name").focus();
-  });
-  var SHEET_URL="";
-  var VEH_AR=["سيارة خاصة","سيارة مستأجرة","دفع رباعي","فان","شاحنة"];
-  form.addEventListener("submit",function(e){
-    e.preventDefault();
-    document.getElementById("r-err3").hidden=true;
-    if(!valid())return;
-    if(document.getElementById("r-website").value){showSent();return}
-    var btn=document.getElementById("r-submit"),lbl=btn.querySelector("span");
-    btn.disabled=true;lbl.textContent=tr("sending");
-    var payload={name:v("r-name"),phone:v("r-phone"),country:v("r-country"),vehicle:VEH_AR[document.getElementById("r-veh").selectedIndex],licence:v("r-lic"),experience:v("r-exp"),notes:v("r-notes"),lang:cur.toUpperCase(),website:""};
-    var done=function(ok){btn.disabled=false;lbl.textContent=tr("submit");if(ok)showSent();else document.getElementById("r-err3").hidden=false};
-    if(!/^https:\/\/script\.google\.com\//.test(SHEET_URL)){
-      // الجدول غير مربوط بعد: الزر يفتح واتساب مع الطلب مكتوب جاهز
-      btn.disabled=false;lbl.textContent=tr("submit");build();
-      var wa=document.createElement("a");wa.href=document.getElementById("r-wa").href;wa.target="_blank";wa.rel="noopener";document.body.appendChild(wa);wa.click();wa.remove();
-      showOk("ok_wa");return;
-    }
-    fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).then(function(){done(true)},function(){done(false)});
-  });
   function showSent(){
     var h=document.querySelector("#r-ok h3");h.dataset.i="ok_sent_h";h.textContent=tr("ok_sent_h");
     var m=document.getElementById("ok-msg");m.dataset.i="ok_sent";m.textContent=tr("ok_sent");
     document.getElementById("ok-msgr").hidden=false;
     form.hidden=true;var ok=document.getElementById("r-ok");ok.hidden=false;ok.scrollIntoView({block:"center",behavior:"smooth"});
   }
-  document.getElementById("r-wa").addEventListener("click",function(e){if(!valid()){e.preventDefault();return}build();showOk("ok_wa")});
+  document.getElementById("ok-again").addEventListener("click",function(){
+    form.reset();build();document.getElementById("r-ok").hidden=true;form.hidden=false;document.getElementById("r-name").focus();
+  });
+  function openLink(href){var a=document.createElement("a");a.href=href;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove()}
 
-  var tgBtn=document.getElementById("r-tg");
-  tgBtn.addEventListener("click",function(){
+  var SHEET_URL="";
+  var VEH_AR=["سيارة","دفع رباعي","فان","شاحنة"];
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    document.getElementById("r-err3").hidden=true;
     if(!valid())return;
-    var lbl=tgBtn.querySelector("span");
-    try{navigator.clipboard.writeText(message()).then(function(){lbl.textContent=tr("copied");setTimeout(function(){lbl.textContent=tr("send_tg")},1600)},function(){})}catch(e){}
-    showOk("ok_tg");
-    var a=document.createElement("a");a.href=TG;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
+    if(document.getElementById("r-website").value){showSent();return}
+    var btn=document.getElementById("r-submit"),lbl=btn.querySelector("span");
+    if(!/^https:\/\/script\.google\.com\//.test(SHEET_URL)){
+      // الجدول غير مربوط بعد: الزر يفتح واتساب مع الطلب مكتوب جاهز
+      build();openLink(document.getElementById("r-wa").href);showOk("ok_wa");return;
+    }
+    btn.disabled=true;lbl.textContent=tr("sending");
+    var payload={name:v("r-name"),phone:v("r-phone"),country:v("r-country"),vehicle:VEH_AR[veh]+" ("+(own?"خاصة":"مستأجرة")+")",licence:v("r-lic"),experience:v("r-exp"),notes:v("r-notes"),lang:cur.toUpperCase(),website:""};
+    var done=function(ok){btn.disabled=false;lbl.textContent=tr("submit");if(ok)showSent();else document.getElementById("r-err3").hidden=false};
+    fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).then(function(){done(true)},function(){done(false)});
+  });
+  document.getElementById("r-wa").addEventListener("click",function(e){if(!valid()){e.preventDefault();return}build();showOk("ok_wa")});
+  document.getElementById("r-tg").addEventListener("click",function(){
+    if(!valid())return;
+    try{navigator.clipboard.writeText(message()).catch(function(){})}catch(e){}
+    showOk("ok_tg");openLink(TG);
   });
 
   document.querySelectorAll("[data-copy]").forEach(function(b){
@@ -624,6 +655,11 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
   });
   document.getElementById("yr").textContent=new Date().getFullYear();
 
+  // bottom nav: highlight the section in view
+  var navLinks=document.querySelectorAll('.bnav a[href^="#"]');
+  function onScroll(){var r=document.getElementById("register").getBoundingClientRect();var inReg=r.top<window.innerHeight*.5&&r.bottom>0;navLinks[0].classList.toggle("on",!inReg);navLinks[1].classList.toggle("on",inReg)}
+  window.addEventListener("scroll",onScroll,{passive:true});
+
   var saved="en";try{saved=localStorage.getItem("bft-lang")||"en"}catch(e){}
   apply(saved);
 
@@ -634,6 +670,7 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
   document.getElementById("w-go").addEventListener("click",closeW);
   w.addEventListener("click",function(e){if(e.target===w)closeW()});
   w.querySelectorAll("[data-close]").forEach(function(a){a.addEventListener("click",closeW)});
+  w.querySelectorAll("[data-wveh]").forEach(function(b){b.addEventListener("click",function(){setVeh(+b.dataset.wveh);closeW();document.getElementById("register").scrollIntoView({behavior:"smooth",block:"start"})})});
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!w.hidden)closeW()});
 })();
 </script>

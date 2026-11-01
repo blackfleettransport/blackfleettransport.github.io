@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Black Fleet Transport: work opportunities in transport across Europe for drivers with a car, SUV, van or truck. Register online.">
+<meta name="theme-color" content="#1c120c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Black Fleet Transport">
+<meta property="og:description" content="Work opportunities in transport across Europe. Register as a driver.">
+<meta property="og:image" content="https://blackfleettransport.github.io/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Black Fleet Transport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,800;1,700;1,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: cocoa-dark recruiting page. Logo hero beside the sign-up call, then vehicles, offer, steps, the registration form and contact. Caramel is the accent, used sparingly. */
+:root{
+  --asphalt:#1c120c;
+  --tarmac:#26180f;
+  --shoulder:#332116;
+  --line:#47301f;
+  --chalk:#f6ece0;
+  --dim:#c7b19b;
+  --caramel:#d9a066;
+  --caramel-hi:#e6b47e;
+  --caramel-ink:#241207;
+  --tg:#2aa3e0;
+  --wa:#25d366;
+  --bad:#ff7a6b;
+  --display:"Exo 2","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+img{max-width:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--asphalt);color:var(--chalk);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--asphalt)}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{overflow-wrap:break-word;font-family:var(--display);font-style:italic;font-weight:800;line-height:1.08;letter-spacing:-.005em;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);margin:0}
+:focus-visible{outline:2px solid var(--caramel);outline-offset:3px;border-radius:4px}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--asphalt) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:10px}
+.bar .brand img{height:30px;width:auto;display:block}
+.bar nav{display:flex;align-items:center;gap:22px;font-size:14px}
+.bar nav a{text-decoration:none;color:var(--dim);white-space:nowrap}
+.bar nav a:hover{color:var(--chalk)}
+.langs{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;flex:none}
+.langs button{font-family:var(--mono);font-size:12px;background:none;border:0;color:var(--dim);border-radius:999px;padding:6px 10px;cursor:pointer;min-width:38px}
+.langs button[aria-pressed="true"]{background:var(--caramel);color:var(--caramel-ink)}
+.langs button:hover{color:var(--chalk)}
+.langs button[aria-pressed="true"]:hover{color:var(--caramel-ink)}
+@media (max-width:1020px){.bar nav a{display:none}}
+@media (max-width:420px){.bar .brand img{height:20px}.langs button{padding:6px 7px;min-width:32px;font-size:11px}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:600;font-size:15px;text-decoration:none;border-radius:8px;padding:13px 20px;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-main{background:var(--caramel);color:var(--caramel-ink)}
+.btn-main:hover{background:var(--caramel-hi)}
+.btn-tg{background:var(--tg);color:#fff}
+.btn-wa{background:var(--wa);color:#04210f}
+.btn-ghost{border-color:var(--line);color:var(--chalk);background:transparent}
+.btn-ghost:hover{border-color:var(--dim)}
+
+/* hero */
+.hero{border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 80% 30%,var(--shoulder),var(--asphalt) 70%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:64px 72px}
+.hero h1{font-size:clamp(34px,5.2vw,62px);margin-block:16px 18px}
+.hero .lead{color:var(--dim);font-size:18px;max-width:36em;margin:0 0 28px}
+.chans{display:flex;flex-wrap:wrap;gap:10px}
+.hero .chans .btn{padding:15px 20px;font-size:16px}
+.hero-logo{justify-self:center;width:100%;max-width:420px}
+.hero-logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
+.road{height:6px;background:repeating-linear-gradient(90deg,var(--caramel) 0 44px,transparent 44px 80px);opacity:.85}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:24px;padding-block:32px 48px;text-align:center}.hero-logo{order:-1;max-width:260px}.hero .lead{margin-inline:auto}.hero .chans{display:grid;grid-template-columns:1fr}}
+
+/* sections */
+section.block{padding-block:80px}
+.head{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:36px;max-width:660px}
+.head h2{font-size:clamp(30px,4.4vw,46px)}
+.head p{color:var(--dim);margin:0}
+@media (max-width:640px){section.block{padding-block:56px}}
+
+/* vehicles */
+.veh{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.v{background:var(--tarmac);border:1px solid var(--line);border-radius:14px;padding:24px 20px;display:grid;gap:8px;align-content:start;min-width:0}
+.v svg{width:56px;height:36px;color:var(--caramel);margin-bottom:6px}
+.v h3{font-size:21px}
+.v p{margin:0;color:var(--dim);font-size:14px}
+@media (max-width:860px){.veh{grid-template-columns:1fr 1fr}}
+@media (max-width:380px){.veh{grid-template-columns:1fr}}
+
+/* offer */
+.offer{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start;background:linear-gradient(135deg,var(--shoulder),var(--tarmac));border:1px solid var(--line);border-radius:16px;padding:40px}
+.offer .head{margin:0}
+.offer ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.offer li{display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:17px}
+.offer li::before{content:"";flex:none;width:24px;height:24px;margin-top:1px;border-radius:50%;background:var(--caramel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23241207' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+@media (max-width:860px){.offer{grid-template-columns:1fr;padding:26px 20px;gap:24px}}
+
+/* steps: a real sequence */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.step{position:relative;padding-top:26px;border-top:2px dashed var(--line);min-width:0}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-17px;inset-inline-start:0;width:32px;height:32px;border-radius:50%;background:var(--caramel);color:var(--caramel-ink);font-family:var(--mono);font-size:14px;display:grid;place-items:center}
+.step h3{font-size:21px;margin-bottom:8px}
+.step p{margin:0;color:var(--dim);font-size:15px}
+@media (max-width:760px){.steps{grid-template-columns:1fr;gap:40px}}
+
+/* registration */
+.reg{background:var(--tarmac);border-block:1px solid var(--line)}
+.r-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+@media (max-width:900px){.r-grid{grid-template-columns:1fr;gap:28px}}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.f{display:grid;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+label{font-size:13px;color:var(--dim);font-weight:500}
+label b{color:var(--caramel);font-weight:600}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--chalk);background:var(--asphalt);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--dim) 60%,transparent)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--caramel)}
+input[aria-invalid="true"]{border-color:var(--bad)}
+textarea{resize:vertical;min-height:84px}
+.form-foot{grid-column:1/-1;display:grid;gap:12px}
+.err{color:var(--bad);font-size:14px;margin:0}
+.send-row{display:flex;flex-wrap:wrap;gap:10px}
+.send-row .btn{padding:10px 16px;font-size:14px}
+#r-submit{justify-self:start;padding:15px 26px;font-size:16px}
+#r-submit[disabled]{opacity:.7;cursor:progress}
+.or{color:var(--dim);font-size:13px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media (max-width:560px){#r-submit{justify-self:stretch}}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--dim);cursor:pointer}
+.consent input{width:20px;height:20px;flex:none;margin:1px 0 0;accent-color:var(--caramel);padding:0}
+.consent.bad span{color:var(--bad)}
+.ok{display:grid;gap:14px;justify-items:start;background:var(--asphalt);border:1px solid var(--line);border-radius:14px;padding:32px 28px}
+.ok .tick{width:56px;height:56px;border-radius:50%;background:var(--caramel);display:grid;place-items:center;color:var(--caramel-ink)}
+.ok .tick svg{width:28px;height:28px}
+.ok h3{font-size:clamp(24px,3vw,30px)}
+.ok p{margin:0;color:var(--dim);max-width:34em}
+.privacy{border-top:1px solid var(--line);padding-block:28px}
+.privacy h2{font-size:18px;font-style:normal;margin-bottom:6px}
+.privacy p{margin:0;color:var(--dim);font-size:14px;max-width:70ch}
+footer a{color:var(--dim)}
+@media (max-width:560px){form{grid-template-columns:1fr}.send-row .btn{flex:1 1 100%}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ct{border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px;align-content:start;min-width:0;background:var(--tarmac)}
+.ct .val{font-family:var(--mono);font-size:clamp(15px,1.6vw,17px);overflow-wrap:anywhere;user-select:all}
+.ct .row{display:flex;flex-wrap:wrap;gap:10px}
+.ct .btn{padding:9px 16px;font-size:14px}
+.copy{font:inherit;font-size:13px;background:none;border:1px solid var(--line);color:var(--chalk);border-radius:8px;padding:8px 14px;cursor:pointer}
+.copy:hover{border-color:var(--dim)}
+.paybar{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.paybar span.lbl{color:var(--dim);font-size:14px;margin-inline-end:6px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--shoulder);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:500}
+.chip svg{width:16px;height:16px;color:var(--caramel)}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:30px calc(30px + 70px);color:var(--dim);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer img{height:22px;width:auto;opacity:.85}
+footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font-size:15px;color:var(--chalk)}
+
+.float{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));right:calc(16px + env(safe-area-inset-right,0px));z-index:30;display:grid;gap:10px}
+.float a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.5);color:#fff}
+.float a svg{width:28px;height:28px}
+.float .tg{background:var(--tg)}
+.float .wa{background:var(--wa)}
+
+/* welcome dialog */
+.welcome{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(15,9,5,.8);backdrop-filter:blur(6px)}
+.welcome .card{width:100%;max-width:470px;max-height:100%;overflow:auto;background:var(--tarmac);border:1px solid var(--line);border-radius:18px;padding:28px 24px;text-align:center;display:grid;gap:14px;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:pop .35s ease-out}
+.welcome img{width:170px;height:auto;margin:0 auto}
+.welcome h2{font-size:clamp(24px,5.6vw,32px)}
+.welcome p{margin:0;color:var(--dim)}
+.welcome .langs{justify-self:center}
+.welcome .stack{display:grid;gap:10px}
+.welcome .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.welcome .go{background:none;border:0;color:var(--chalk);font:inherit;font-weight:600;padding:8px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+@keyframes pop{from{transform:translateY(12px) scale(.98)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}.welcome .card{animation:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.5 4.3 18.4 19c-.2 1-.8 1.3-1.7.8l-4.6-3.4-2.2 2.1c-.3.3-.5.5-1 .5l.3-4.7 8.6-7.8c.4-.3-.1-.5-.6-.2L6.6 13 2 11.6c-1-.3-1-1 .2-1.5l18-6.9c.8-.3 1.6.2 1.3 1.1Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></g></symbol>
+  <symbol id="i-form" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></g></symbol>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Black Fleet Transport"><img src="logo.png" alt="Black Fleet Transport"></a>
+    <nav>
+      <a href="#vehicles" data-i="nav_veh">Vehicles</a>
+      <a href="#offer" data-i="nav_offer">What we offer</a>
+      <a href="#register" data-i="nav_reg">Register</a>
+      <a href="#contact" data-i="nav_contact">Contact</a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+      <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow" data-i="hero_eye">Driver network · Europe</p>
+        <h1 data-i="hero_h">Your gateway to new work opportunities in Europe</h1>
+        <p class="lead" data-i="hero_p">We welcome professional drivers, men and women, who want to work in transport across Europe. Register with your own or rented car, SUV, van or truck.</p>
+        <div class="chans">
+          <a class="btn btn-main" href="#register"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
+          <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
+          <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-logo"><img src="logo-shield.png" alt="Black Fleet Transport"></div>
+    </div>
+    <div class="road" aria-hidden="true"></div>
+  </section>
+
+  <section class="block" id="vehicles">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-i="v_eye">Vehicles</p>
+        <h2 data-i="v_h">What do you drive?</h2>
+        <p data-i="v_p">We accept applications from drivers with any of these vehicles.</p>
+      </div>
+      <div class="veh">
+        <div class="v">
+          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 24v-5l6-2 7-7h16l9 7 8 2v5H4Z"/><circle cx="15" cy="25" r="4" fill="var(--tarmac)"/><circle cx="41" cy="25" r="4" fill="var(--tarmac)"/><path d="M19 17h20"/></svg>
+          <h3 data-i="v1h">Car</h3><p data-i="v1p">Your own or a rented car</p>
+        </div>
+        <div class="v">
+          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 25V15l5-1 5-7h24l6 7 8 2v9H4Z"/><circle cx="15" cy="26" r="4.5" fill="var(--tarmac)"/><circle cx="41" cy="26" r="4.5" fill="var(--tarmac)"/><path d="M16 14h26M27 7v7M12 4h28"/></svg>
+          <h3 data-i="v2h">SUV / 4×4</h3><p data-i="v2p">Four-wheel drive vehicles</p>
+        </div>
+        <div class="v">
+          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 25V7h32l8 6 8 3v9H4Z"/><circle cx="15" cy="26" r="4" fill="var(--tarmac)"/><circle cx="42" cy="26" r="4" fill="var(--tarmac)"/><path d="M36 7v7h12"/></svg>
+          <h3 data-i="v3h">Van</h3><p data-i="v3p">Cargo and passenger vans</p>
+        </div>
+        <div class="v">
+          <svg viewBox="0 0 56 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M2 25V5h32v20M34 11h10l8 7v7H34"/><circle cx="11" cy="27" r="3.5" fill="var(--tarmac)"/><circle cx="21" cy="27" r="3.5" fill="var(--tarmac)"/><circle cx="44" cy="27" r="3.5" fill="var(--tarmac)"/><path d="M38 11v7h14"/></svg>
+          <h3 data-i="v4h">Truck</h3><p data-i="v4p">Trucks and tractor units</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="offer" style="padding-top:0">
+    <div class="wrap">
+      <div class="offer">
+        <div class="head">
+          <p class="eyebrow" data-i="o_eye">What we offer</p>
+          <h2 data-i="o_h">Why join Black Fleet</h2>
+        </div>
+        <ul>
+          <li data-i="o1">Transport job opportunities, depending on availability</li>
+          <li data-i="o2">Direct contact with our management and dispatch team</li>
+          <li data-i="o3">Register with your own vehicle</li>
+          <li data-i="o4">Organised driver requests and communication</li>
+          <li data-i="o5">Information about available transport jobs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-i="s_eye">How to join</p>
+        <h2 data-i="s_h">Three steps to start</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3 data-i="st1h">Fill in the form</h3><p data-i="st1p">Your name, contact, country, vehicle and experience.</p></div>
+        <div class="step"><h3 data-i="st2h">Send it</h3><p data-i="st2p">One tap sends it straight to our team.</p></div>
+        <div class="step"><h3 data-i="st3h">We contact you</h3><p data-i="st3p">Our team explains the details and the jobs available.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block reg" id="register">
+    <div class="wrap r-grid">
+      <div class="head" style="margin:0">
+        <p class="eyebrow" data-i="r_eye">Registration</p>
+        <h2 data-i="r_h">Join the driver team</h2>
+        <p data-i="r_p">Fill in your details and press Submit. Our team receives your registration right away.</p>
+      </div>
+      <form id="rform" novalidate>
+        <div class="f"><label for="r-name"><span data-i="l_name">Full name</span> <b>*</b></label><input id="r-name" autocomplete="name"></div>
+        <div class="f"><label for="r-phone"><span data-i="l_phone">Phone (WhatsApp / Telegram)</span> <b>*</b></label><input id="r-phone" type="tel" autocomplete="tel" placeholder="+40 7xx xxx xxx"></div>
+        <div class="f"><label for="r-country" data-i="l_country">Country and city you are in</label><input id="r-country" autocomplete="off"></div>
+        <div class="f"><label for="r-veh" data-i="l_veh">Vehicle</label>
+          <select id="r-veh">
+            <option data-i="ve1">Own car</option>
+            <option data-i="ve2">Rented car</option>
+            <option data-i="ve3">SUV / 4×4</option>
+            <option data-i="ve4">Van</option>
+            <option data-i="ve5">Truck</option>
+          </select></div>
+        <div class="f"><label for="r-lic" data-i="l_lic">Licence category</label><input id="r-lic" placeholder="B, C, CE" autocomplete="off"></div>
+        <div class="f"><label for="r-exp" data-i="l_exp">Driving experience (years)</label><input id="r-exp" inputmode="numeric" placeholder="5" autocomplete="off"></div>
+        <div class="f full"><label for="r-notes" data-i="l_notes">Anything else</label><textarea id="r-notes" data-i-ph="ph_notes" placeholder="Languages you speak, when you can start, questions"></textarea></div>
+        <div class="hp" aria-hidden="true"><label for="r-website">Website</label><input id="r-website" tabindex="-1" autocomplete="off"></div>
+        <div class="form-foot">
+          <label class="consent" id="r-consent-row"><input type="checkbox" id="r-consent"><span data-i="consent">I agree that Black Fleet Transport uses my details only to contact me about work opportunities.</span></label>
+          <p class="err" id="r-err" data-i="err" hidden>Please enter your name and phone number.</p>
+          <p class="err" id="r-err2" data-i="err_consent" hidden>Please tick the consent box.</p>
+          <p class="err" id="r-err3" data-i="send_fail" hidden>Could not send the form. Check your internet, or send it on WhatsApp below.</p>
+          <button class="btn btn-main" id="r-submit" type="submit"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="submit">Submit registration</span></button>
+          <small class="or" data-i="or_msg">Or send it as a message:</small>
+          <div class="send-row">
+            <a class="btn btn-wa" id="r-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span data-i="send_wa">Send via WhatsApp</span></a>
+            <button class="btn btn-tg" id="r-tg" type="button"><svg aria-hidden="true"><use href="#i-tg"/></svg><span data-i="send_tg">Copy and open Telegram</span></button>
+          </div>
+        </div>
+      </form>
+      <div class="ok" id="r-ok" role="status" hidden>
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+        <h3 data-i="ok_h">Thank you! Your application is ready</h3>
+        <p id="ok-msg" data-i="ok_wa">Press Send in WhatsApp so it reaches us. Our team will contact you soon with the details.</p>
+        <div class="send-row" id="ok-msgr">
+          <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
+          <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
+        <button class="btn btn-ghost" type="button" id="ok-again" data-i="ok_again">Fill in another application</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow" data-i="c_eye">Contact</p>
+        <h2 data-i="c_h">Talk to our team</h2>
+      </div>
+      <div class="contact">
+        <div class="ct">
+          <p class="eyebrow">Telegram</p>
+          <div class="val" id="v-tg">@BLACKFLEETTRANSPORT</div>
+          <div class="row">
+            <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener" data-i="c_open">Open chat</a>
+            <button class="copy" type="button" data-copy="v-tg" data-i="copy">Copy</button>
+          </div>
+        </div>
+        <div class="ct">
+          <p class="eyebrow">WhatsApp</p>
+          <div class="val" id="v-phone">+359 89 530 8410</div>
+          <div class="row">
+            <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener" data-i="c_open">Open chat</a>
+            <button class="copy" type="button" data-copy="v-phone" data-i="copy">Copy</button>
+          </div>
+        </div>
+        <div class="ct">
+          <p class="eyebrow">Email</p>
+          <div class="val" id="v-mail">blackfleet.transport@gmail.com</div>
+          <div class="row">
+            <button class="copy" type="button" data-copy="v-mail" data-i="copy">Copy</button>
+          </div>
+        </div>
+      </div>
+      <div class="paybar">
+        <span class="lbl" data-i="pay">Payment methods</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 7.5h4a2 2 0 0 1 0 4h-4m0 0h4.5a2 2 0 0 1 0 4h-4.5m0-8v8"/></svg><span data-i="pay1">Cryptocurrency</span></span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></svg>Revolut</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.6"/></svg><span data-i="pay3">Cash</span></span>
+      </div>
+    </div>
+  </section>
+  <section class="privacy" id="privacy">
+    <div class="wrap">
+      <h2 data-i="priv_h">Privacy</h2>
+      <p data-i="priv_p">We store the details you send in our internal list and use them only to contact you about work with Black Fleet Transport. We do not sell or share them with third parties. You can ask us to delete your details at any time on Telegram, WhatsApp or by email.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="logo.png" alt="Black Fleet Transport">
+    <span class="slogan" data-i="slogan">Together toward a better future in transport.</span>
+    <span>© <span id="yr">2026</span> Black Fleet Transport · <a href="#privacy" data-i="priv_h">Privacy</a></span>
+  </div>
+</footer>
+
+<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-h" hidden>
+  <div class="card">
+    <img src="logo-shield.png" alt="Black Fleet Transport">
+    <h2 id="w-h" data-i="w_h">Welcome to Black Fleet Transport</h2>
+    <p data-i="w_p">Your gateway to new work opportunities in transport across Europe. Choose your language to continue.</p>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      <button type="button" data-lang="uk" aria-pressed="false">UA</button>
+      <button type="button" data-lang="ro" aria-pressed="false">RO</button>
+    </div>
+    <div class="stack">
+      <a class="btn btn-main" href="#register" data-close><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
+      <div class="two">
+        <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener" data-close><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
+        <a class="btn btn-wa" href="https://wa.me/359895308410" target="_blank" rel="noopener" data-close><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+      </div>
+    </div>
+    <button class="go" type="button" id="w-go" data-i="w_go">Continue to site</button>
+  </div>
+</div>
+
+<div class="float">
+  <a class="tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener" aria-label="Telegram"><svg aria-hidden="true"><use href="#i-tg"/></svg></a>
+  <a class="wa" href="https://wa.me/359895308410" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+</div>
+
+<script>
+(function(){
+  var WA="359895308410", TG="https://t.me/BLACKFLEETTRANSPORT";
+  var T={
+  ru:{submit:"Отправить анкету",sending:"Отправка…",or_msg:"Или отправьте сообщением:",ok_sent_h:"Спасибо! Ваша анкета получена",ok_sent:"Наша команда скоро свяжется с вами. Для более быстрого ответа напишите нам в Telegram или WhatsApp.",send_fail:"Не удалось отправить анкету. Проверьте интернет или отправьте её через WhatsApp ниже.",consent:"Я согласен(на), что Black Fleet Transport использует мои данные только для связи со мной по вопросам работы.",err_consent:"Отметьте согласие.",ok_h:"Спасибо! Ваша анкета готова",ok_wa:"Нажмите «Отправить» в WhatsApp, чтобы она дошла до нас. Наша команда скоро свяжется с вами.",ok_tg:"Текст скопирован. Вставьте его в наш чат Telegram и отправьте. Наша команда скоро свяжется с вами.",ok_again:"Заполнить ещё одну анкету",priv_h:"Конфиденциальность",priv_p:"Мы храним отправленные вами данные в нашем внутреннем списке и используем их только для связи с вами по поводу работы в Black Fleet Transport. Мы не продаём и не передаём их третьим лицам. Вы можете в любой момент попросить удалить ваши данные через Telegram, WhatsApp или почту.",
+    nav_veh:"Транспорт",nav_offer:"Что мы предлагаем",nav_reg:"Регистрация",nav_contact:"Контакты",
+    w_h:"Добро пожаловать в Black Fleet Transport",w_p:"Ваш путь к новым возможностям работы в сфере перевозок по Европе. Выберите язык, чтобы продолжить.",w_go:"Перейти на сайт",
+    hero_eye:"Сеть водителей · Европа",hero_h:"Ваш путь к новой работе в Европе",hero_p:"Мы приглашаем профессиональных водителей, мужчин и женщин, которые хотят работать в сфере перевозок по Европе. Регистрируйтесь со своим или арендованным автомобилем, внедорожником, фургоном или грузовиком.",btn_reg:"Зарегистрироваться",
+    v_eye:"Транспорт",v_h:"На чём вы ездите?",v_p:"Мы принимаем заявки от водителей с любым из этих видов транспорта.",
+    v1h:"Легковой автомобиль",v1p:"Собственный или арендованный",v2h:"Внедорожник",v2p:"Полноприводные автомобили",v3h:"Фургон",v3p:"Грузовые и пассажирские",v4h:"Грузовик",v4p:"Грузовики и тягачи",
+    o_eye:"Что мы предлагаем",o_h:"Почему Black Fleet",o1:"Работа в сфере перевозок, в зависимости от наличия",o2:"Прямая связь с командой управления и диспетчерами",o3:"Регистрация на собственном автомобиле",o4:"Чёткая организация заявок и общения с водителями",o5:"Информация о доступных рейсах и заказах",
+    s_eye:"Как присоединиться",s_h:"Три шага до старта",st1h:"Заполните анкету",st1p:"Имя, контакты, страна, транспорт и опыт.",st2h:"Отправьте её",st2p:"Одно нажатие, и анкета у нашей команды.",st3h:"Мы свяжемся с вами",st3p:"Наша команда расскажет детали и доступные предложения.",
+    r_eye:"Регистрация",r_h:"Вступайте в команду водителей",r_p:"Заполните данные и нажмите «Отправить анкету». Наша команда сразу получит вашу заявку.",
+    l_name:"Имя и фамилия",l_phone:"Телефон (WhatsApp / Telegram)",l_country:"Страна и город, где вы сейчас",l_veh:"Транспорт",ve1:"Собственный автомобиль",ve2:"Арендованный автомобиль",ve3:"Внедорожник",ve4:"Фургон",ve5:"Грузовик",l_lic:"Категория прав",l_exp:"Стаж вождения (лет)",l_notes:"Дополнительно",ph_notes:"Языки, которыми владеете, когда можете начать, вопросы",
+    err:"Укажите имя и номер телефона.",send_wa:"Отправить в WhatsApp",send_tg:"Скопировать и открыть Telegram",
+    c_eye:"Контакты",c_h:"Свяжитесь с командой",c_open:"Открыть чат",copy:"Копировать",copied:"Скопировано",pay:"Способы оплаты",pay1:"Криптовалюта",pay3:"Наличные",slogan:"Вместе к лучшему будущему в мире перевозок.",
+    m_hello:"Здравствуйте, Black Fleet Transport! Хочу в команду водителей:",m_name:"Имя: ",m_phone:"Телефон: ",m_country:"Местоположение: ",m_veh:"Транспорт: ",m_lic:"Права: ",m_exp:"Стаж: ",m_notes:"Дополнительно: "},
+  uk:{submit:"Надіслати анкету",sending:"Надсилання…",or_msg:"Або надішліть повідомленням:",ok_sent_h:"Дякуємо! Вашу анкету отримано",ok_sent:"Наша команда скоро зв'яжеться з вами. Для швидшої відповіді напишіть нам у Telegram або WhatsApp.",send_fail:"Не вдалося надіслати анкету. Перевірте інтернет або надішліть її через WhatsApp нижче.",consent:"Я погоджуюся, що Black Fleet Transport використовує мої дані лише для зв'язку зі мною щодо роботи.",err_consent:"Позначте згоду.",ok_h:"Дякуємо! Вашу анкету готово",ok_wa:"Натисніть «Надіслати» у WhatsApp, щоб вона дійшла до нас. Наша команда скоро зв'яжеться з вами.",ok_tg:"Текст скопійовано. Вставте його в наш чат Telegram і надішліть. Наша команда скоро зв'яжеться з вами.",ok_again:"Заповнити ще одну анкету",priv_h:"Конфіденційність",priv_p:"Ми зберігаємо надіслані вами дані в нашому внутрішньому списку та використовуємо їх лише для зв'язку з вами щодо роботи в Black Fleet Transport. Ми не продаємо і не передаємо їх третім особам. Ви можете будь-коли попросити видалити ваші дані через Telegram, WhatsApp або пошту.",
+    nav_veh:"Транспорт",nav_offer:"Що ми пропонуємо",nav_reg:"Реєстрація",nav_contact:"Контакти",
+    w_h:"Ласкаво просимо до Black Fleet Transport",w_p:"Ваш шлях до нових можливостей роботи у сфері перевезень по Європі. Оберіть мову, щоб продовжити.",w_go:"Перейти на сайт",
+    hero_eye:"Мережа водіїв · Європа",hero_h:"Ваш шлях до нової роботи в Європі",hero_p:"Ми запрошуємо професійних водіїв, чоловіків і жінок, які хочуть працювати у сфері перевезень по Європі. Реєструйтеся з власним або орендованим авто, позашляховиком, фургоном чи вантажівкою.",btn_reg:"Зареєструватися",
+    v_eye:"Транспорт",v_h:"На чому ви їздите?",v_p:"Ми приймаємо заявки від водіїв з будь-яким із цих видів транспорту.",
+    v1h:"Легковий автомобіль",v1p:"Власний або орендований",v2h:"Позашляховик",v2p:"Повнопривідні автомобілі",v3h:"Фургон",v3p:"Вантажні та пасажирські",v4h:"Вантажівка",v4p:"Вантажівки та тягачі",
+    o_eye:"Що ми пропонуємо",o_h:"Чому Black Fleet",o1:"Робота у сфері перевезень, залежно від наявності",o2:"Прямий зв'язок із командою управління та диспетчерами",o3:"Реєстрація на власному авто",o4:"Чітка організація заявок і спілкування з водіями",o5:"Інформація про доступні рейси та замовлення",
+    s_eye:"Як приєднатися",s_h:"Три кроки до старту",st1h:"Заповніть анкету",st1p:"Ім'я, контакти, країна, транспорт і досвід.",st2h:"Надішліть її",st2p:"Один натиск, і анкета в нашої команди.",st3h:"Ми зв'яжемося з вами",st3p:"Наша команда розповість деталі та доступні пропозиції.",
+    r_eye:"Реєстрація",r_h:"Приєднуйтесь до команди водіїв",r_p:"Заповніть дані й натисніть «Надіслати анкету». Наша команда одразу отримає вашу заявку.",
+    l_name:"Ім'я та прізвище",l_phone:"Телефон (WhatsApp / Telegram)",l_country:"Країна та місто, де ви зараз",l_veh:"Транспорт",ve1:"Власне авто",ve2:"Орендоване авто",ve3:"Позашляховик",ve4:"Фургон",ve5:"Вантажівка",l_lic:"Категорія прав",l_exp:"Стаж водіння (років)",l_notes:"Додатково",ph_notes:"Мови, якими володієте, коли можете почати, питання",
+    err:"Вкажіть ім'я та номер телефону.",send_wa:"Надіслати у WhatsApp",send_tg:"Скопіювати й відкрити Telegram",
+    c_eye:"Контакти",c_h:"Зв'яжіться з командою",c_open:"Відкрити чат",copy:"Копіювати",copied:"Скопійовано",pay:"Способи оплати",pay1:"Криптовалюта",pay3:"Готівка",slogan:"Разом до кращого майбутнього у світі перевезень.",
+    m_hello:"Добрий день, Black Fleet Transport! Хочу до команди водіїв:",m_name:"Ім'я: ",m_phone:"Телефон: ",m_country:"Місцезнаходження: ",m_veh:"Транспорт: ",m_lic:"Права: ",m_exp:"Стаж: ",m_notes:"Додатково: "},
+  ro:{submit:"Trimite înregistrarea",sending:"Se trimite…",or_msg:"Sau trimite-o ca mesaj:",ok_sent_h:"Mulțumim! Înregistrarea ta a fost primită",ok_sent:"Echipa noastră te va contacta în curând. Pentru un răspuns mai rapid, scrie-ne pe Telegram sau WhatsApp.",send_fail:"Formularul nu a putut fi trimis. Verifică internetul sau trimite-l pe WhatsApp mai jos.",consent:"Sunt de acord ca Black Fleet Transport să folosească datele mele doar pentru a mă contacta despre locuri de muncă.",err_consent:"Bifează acordul.",ok_h:"Mulțumim! Cererea ta este gata",ok_wa:"Apasă Trimite în WhatsApp ca să ajungă la noi. Echipa noastră te va contacta în curând.",ok_tg:"Textul a fost copiat. Lipește-l în chatul nostru de Telegram și trimite-l. Echipa noastră te va contacta în curând.",ok_again:"Completează altă cerere",priv_h:"Confidențialitate",priv_p:"Păstrăm datele pe care ni le trimiți în lista noastră internă și le folosim doar pentru a te contacta despre muncă la Black Fleet Transport. Nu le vindem și nu le transmitem terților. Poți cere oricând ștergerea datelor pe Telegram, WhatsApp sau pe email.",
+    nav_veh:"Vehicule",nav_offer:"Ce oferim",nav_reg:"Înregistrare",nav_contact:"Contact",
+    w_h:"Bun venit la Black Fleet Transport",w_p:"Poarta ta către noi oportunități de muncă în transport în Europa. Alege limba pentru a continua.",w_go:"Intră pe site",
+    hero_eye:"Rețea de șoferi · Europa",hero_h:"Poarta ta către un nou loc de muncă în Europa",hero_p:"Invităm șoferi profesioniști, bărbați și femei, care vor să lucreze în transport în Europa. Înregistrează-te cu mașina proprie sau închiriată, SUV, dubă sau camion.",btn_reg:"Înregistrează-te",
+    v_eye:"Vehicule",v_h:"Ce conduci?",v_p:"Acceptăm cereri de la șoferi cu oricare dintre aceste vehicule.",
+    v1h:"Autoturism",v1p:"Proprie sau închiriată",v2h:"SUV / 4×4",v2p:"Vehicule cu tracțiune integrală",v3h:"Dubă",v3p:"De marfă și de pasageri",v4h:"Camion",v4p:"Camioane și capete tractor",
+    o_eye:"Ce oferim",o_h:"De ce Black Fleet",o1:"Locuri de muncă în transport, în funcție de disponibilitate",o2:"Legătură directă cu echipa de management și dispecerat",o3:"Înregistrare cu vehiculul propriu",o4:"Cereri și comunicare cu șoferii bine organizate",o5:"Informații despre curse și comenzi disponibile",
+    s_eye:"Cum te alături",s_h:"Trei pași pentru început",st1h:"Completează formularul",st1p:"Numele, contactul, țara, vehiculul și experiența.",st2h:"Trimite-l",st2p:"O singură atingere și ajunge direct la echipa noastră.",st3h:"Te contactăm",st3p:"Echipa noastră îți explică detaliile și ofertele disponibile.",
+    r_eye:"Înregistrare",r_h:"Alătură-te echipei de șoferi",r_p:"Completează datele și apasă Trimite înregistrarea. Echipa noastră primește cererea imediat.",
+    l_name:"Nume complet",l_phone:"Telefon (WhatsApp / Telegram)",l_country:"Țara și orașul în care te afli",l_veh:"Vehicul",ve1:"Mașină proprie",ve2:"Mașină închiriată",ve3:"SUV / 4×4",ve4:"Dubă",ve5:"Camion",l_lic:"Categoria permisului",l_exp:"Experiență (ani)",l_notes:"Alte detalii",ph_notes:"Limbi vorbite, când poți începe, întrebări",
+    err:"Introdu numele și numărul de telefon.",send_wa:"Trimite pe WhatsApp",send_tg:"Copiază și deschide Telegram",
+    c_eye:"Contact",c_h:"Vorbește cu echipa",c_open:"Deschide chatul",copy:"Copiază",copied:"Copiat",pay:"Metode de plată",pay1:"Criptomonede",pay3:"Numerar",slogan:"Împreună spre un viitor mai bun în transport.",
+    m_hello:"Bună ziua, Black Fleet Transport! Vreau să mă alătur echipei de șoferi:",m_name:"Nume: ",m_phone:"Telefon: ",m_country:"Locație: ",m_veh:"Vehicul: ",m_lic:"Permis: ",m_exp:"Experiență: ",m_notes:"Detalii: "}
+  };
+  var EN={sending:"Sending…",ok_sent_h:"Thank you! Your registration was received",ok_sent:"Our team will contact you soon with the details. For a faster answer, message us on Telegram or WhatsApp.",ok_tg:"The text is copied. Paste it in our Telegram chat and send it. Our team will contact you soon with the details.",copied:"Copied",m_hello:"Hello Black Fleet Transport, I want to join the driver team:",m_name:"Name: ",m_phone:"Phone: ",m_country:"Location: ",m_veh:"Vehicle: ",m_lic:"Licence: ",m_exp:"Experience: ",m_notes:"Notes: "};
+  document.querySelectorAll("[data-i]").forEach(function(el){if(!(el.dataset.i in EN))EN[el.dataset.i]=el.textContent});
+  document.querySelectorAll("[data-i-ph]").forEach(function(el){EN[el.dataset.iPh]=el.placeholder});
+  T.en=EN;
+  var cur="en";
+  function tr(k){return (T[cur]&&T[cur][k]!=null)?T[cur][k]:EN[k]}
+  function apply(l){
+    if(!T[l])l="en";cur=l;
+    document.documentElement.lang=l;
+    document.querySelectorAll("[data-i]").forEach(function(el){el.textContent=tr(el.dataset.i)});
+    document.querySelectorAll("[data-i-ph]").forEach(function(el){el.placeholder=tr(el.dataset.iPh)});
+    document.querySelectorAll("[data-lang]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.lang===l?"true":"false")});
+    try{localStorage.setItem("bft-lang",l)}catch(e){}
+    build();
+  }
+  document.querySelectorAll("[data-lang]").forEach(function(b){b.addEventListener("click",function(){apply(b.dataset.lang)})});
+
+  function v(id){return document.getElementById(id).value.trim()}
+  function message(){
+    var sel=document.getElementById("r-veh");
+    var lines=[tr("m_hello"),tr("m_name")+v("r-name"),tr("m_phone")+v("r-phone")];
+    if(v("r-country"))lines.push(tr("m_country")+v("r-country"));
+    lines.push(tr("m_veh")+sel.options[sel.selectedIndex].text);
+    if(v("r-lic"))lines.push(tr("m_lic")+v("r-lic"));
+    if(v("r-exp"))lines.push(tr("m_exp")+v("r-exp"));
+    if(v("r-notes"))lines.push(tr("m_notes")+v("r-notes"));
+    return lines.join("\n");
+  }
+  function build(){document.getElementById("r-wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(message())}
+  function valid(){
+    var ok=true;
+    ["r-name","r-phone"].forEach(function(id){var el=document.getElementById(id),bad=!el.value.trim();el.setAttribute("aria-invalid",bad?"true":"false");if(bad)ok=false});
+    document.getElementById("r-err").hidden=ok;
+    if(!ok){document.getElementById(v("r-name")?"r-phone":"r-name").focus()}
+    var c=document.getElementById("r-consent").checked;
+    document.getElementById("r-err2").hidden=c;
+    document.getElementById("r-consent-row").classList.toggle("bad",!c);
+    if(ok&&!c)document.getElementById("r-consent").focus();
+    return ok&&c;
+  }
+  var form=document.getElementById("rform");
+  form.addEventListener("input",function(e){build();if(e.target.getAttribute("aria-invalid")==="true"&&e.target.value.trim()){e.target.setAttribute("aria-invalid","false");if(v("r-name")&&v("r-phone"))document.getElementById("r-err").hidden=true}});
+  form.addEventListener("change",function(e){build();if(e.target.id==="r-consent"&&e.target.checked){document.getElementById("r-err2").hidden=true;document.getElementById("r-consent-row").classList.remove("bad")}});
+  function showOk(mode){
+    var h=document.querySelector("#r-ok h3");h.dataset.i="ok_h";h.textContent=tr("ok_h");
+    var m=document.getElementById("ok-msg");m.dataset.i=mode;m.textContent=tr(mode);document.getElementById("ok-msgr").hidden=true;
+    setTimeout(function(){form.hidden=true;var ok=document.getElementById("r-ok");ok.hidden=false;ok.scrollIntoView({block:"center",behavior:"smooth"})},400);
+  }
+  document.getElementById("ok-again").addEventListener("click",function(){
+    form.reset();build();document.getElementById("r-ok").hidden=true;form.hidden=false;document.getElementById("r-name").focus();
+  });
+  var SHEET_URL="";
+  var VEH_AR=["سيارة خاصة","سيارة مستأجرة","دفع رباعي","فان","شاحنة"];
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    document.getElementById("r-err3").hidden=true;
+    if(!valid())return;
+    if(document.getElementById("r-website").value){showSent();return}
+    var btn=document.getElementById("r-submit"),lbl=btn.querySelector("span");
+    btn.disabled=true;lbl.textContent=tr("sending");
+    var payload={name:v("r-name"),phone:v("r-phone"),country:v("r-country"),vehicle:VEH_AR[document.getElementById("r-veh").selectedIndex],licence:v("r-lic"),experience:v("r-exp"),notes:v("r-notes"),lang:cur.toUpperCase(),website:""};
+    var done=function(ok){btn.disabled=false;lbl.textContent=tr("submit");if(ok)showSent();else document.getElementById("r-err3").hidden=false};
+    if(!/^https:\/\/script\.google\.com\//.test(SHEET_URL)){
+      // الجدول غير مربوط بعد: الزر يفتح واتساب مع الطلب مكتوب جاهز
+      btn.disabled=false;lbl.textContent=tr("submit");build();
+      var wa=document.createElement("a");wa.href=document.getElementById("r-wa").href;wa.target="_blank";wa.rel="noopener";document.body.appendChild(wa);wa.click();wa.remove();
+      showOk("ok_wa");return;
+    }
+    fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).then(function(){done(true)},function(){done(false)});
+  });
+  function showSent(){
+    var h=document.querySelector("#r-ok h3");h.dataset.i="ok_sent_h";h.textContent=tr("ok_sent_h");
+    var m=document.getElementById("ok-msg");m.dataset.i="ok_sent";m.textContent=tr("ok_sent");
+    document.getElementById("ok-msgr").hidden=false;
+    form.hidden=true;var ok=document.getElementById("r-ok");ok.hidden=false;ok.scrollIntoView({block:"center",behavior:"smooth"});
+  }
+  document.getElementById("r-wa").addEventListener("click",function(e){if(!valid()){e.preventDefault();return}build();showOk("ok_wa")});
+
+  var tgBtn=document.getElementById("r-tg");
+  tgBtn.addEventListener("click",function(){
+    if(!valid())return;
+    var lbl=tgBtn.querySelector("span");
+    try{navigator.clipboard.writeText(message()).then(function(){lbl.textContent=tr("copied");setTimeout(function(){lbl.textContent=tr("send_tg")},1600)},function(){})}catch(e){}
+    showOk("ok_tg");
+    var a=document.createElement("a");a.href=TG;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
+  });
+
+  document.querySelectorAll("[data-copy]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var el=document.getElementById(b.dataset.copy),txt=el.textContent.trim();
+      var done=function(){b.textContent=tr("copied");setTimeout(function(){b.textContent=tr("copy")},1400)};
+      var fallback=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+      try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+    });
+  });
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  var saved="en";try{saved=localStorage.getItem("bft-lang")||"en"}catch(e){}
+  apply(saved);
+
+  var w=document.getElementById("welcome"),seen=false;
+  try{seen=sessionStorage.getItem("bft-welcome")==="1"}catch(e){}
+  function closeW(){w.hidden=true;try{sessionStorage.setItem("bft-welcome","1")}catch(e){}}
+  if(!seen){w.hidden=false}
+  document.getElementById("w-go").addEventListener("click",closeW);
+  w.addEventListener("click",function(e){if(e.target===w)closeW()});
+  w.querySelectorAll("[data-close]").forEach(function(a){a.addEventListener("click",closeW)});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!w.hidden)closeW()});
+})();
+</script>
+
+</body>
+</html>

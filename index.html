@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Black Fleet Transport: work opportunities in transport across Europe for drivers with a car, SUV, van or truck. Pay from €2,000 per trip. Register online.">
+<meta name="description" content="Black Fleet Transport: work opportunities in transport across Europe for drivers with a car, SUV, van or truck. €2,000 per trip, paid daily. Register online.">
 <meta name="theme-color" content="#1c120c">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Black Fleet Transport">
-<meta property="og:description" content="Pay from €2,000 per trip. Register as a driver.">
+<meta property="og:description" content="€2,000 per trip, paid daily after every trip. Register as a driver.">
 <meta property="og:image" content="https://blackfleettransport.github.io/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="icon.png">
@@ -82,9 +82,13 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:co
 .hero h1{font-size:clamp(34px,5.2vw,62px);margin-block:16px 18px}
 .hero .lead{color:var(--dim);font-size:18px;max-width:36em;margin:0 0 28px}
 .chans{display:flex;flex-wrap:wrap;gap:10px}
-.paybadge{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;border:1px solid var(--caramel);border-radius:12px;padding:12px 18px;margin:0 0 26px;background:color-mix(in srgb,var(--caramel) 10%,transparent)}
-.paybadge span{color:var(--dim);font-size:15px;font-weight:500}
-.paybadge b{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(30px,4vw,40px);line-height:1;color:var(--caramel);font-variant-numeric:tabular-nums}
+.paybadge{display:inline-grid;gap:6px;border:1px solid var(--caramel);border-radius:12px;padding:12px 18px;margin:0 0 26px;background:color-mix(in srgb,var(--caramel) 10%,transparent)}
+.pbrow{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.paybadge span{color:var(--chalk);font-size:17px;font-weight:600}
+.pbsub{color:var(--dim);font-size:15px;font-weight:500}
+.pbsub::before{content:"";display:inline-block;vertical-align:middle;width:8px;height:8px;margin:-2px 8px 0 0;border-radius:50%;background:var(--wa)}
+@media (max-width:860px){.paybadge{justify-items:center}.pbrow{justify-content:center}}
+.paybadge b{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(38px,5vw,52px);line-height:1;color:var(--caramel);font-variant-numeric:tabular-nums}
 .hero .chans .btn{padding:15px 20px;font-size:16px}
 .hero-logo{justify-self:center;width:100%;max-width:420px}
 .hero-logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
@@ -111,6 +115,8 @@ section.block{padding-block:80px}
 .offer{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start;background:linear-gradient(135deg,var(--shoulder),var(--tarmac));border:1px solid var(--line);border-radius:16px;padding:40px}
 .offer .head{margin:0}
 .offer ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.offer-cta{grid-column:1/-1;justify-self:start;padding:15px 26px;font-size:16px}
+@media (max-width:860px){.offer-cta{justify-self:stretch}}
 .offer li{display:flex;gap:12px;align-items:flex-start;font-weight:500;font-size:17px}
 .offer li::before{content:"";flex:none;width:24px;height:24px;margin-top:1px;border-radius:50%;background:var(--caramel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23241207' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 @media (max-width:860px){.offer{grid-template-columns:1fr;padding:26px 20px;gap:24px}}
@@ -192,6 +198,9 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
 .welcome h2{font-size:clamp(24px,5.6vw,32px)}
 .welcome p{margin:0;color:var(--dim)}
 .welcome .langs{justify-self:center}
+.w-offer{justify-self:center;display:flex;align-items:baseline;flex-wrap:wrap;justify-content:center;gap:4px 10px;border:1px solid var(--caramel);border-radius:12px;padding:10px 18px;background:color-mix(in srgb,var(--caramel) 12%,transparent)}
+.w-offer b{font-family:var(--display);font-style:italic;font-weight:800;font-size:34px;line-height:1;color:var(--caramel)}
+.w-offer span{font-weight:600}
 .welcome .stack{display:grid;gap:10px}
 .welcome .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .welcome .go{background:none;border:0;color:var(--chalk);font:inherit;font-weight:600;padding:8px;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
@@ -231,9 +240,9 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow" data-i="hero_eye">Driver network · Europe</p>
-        <h1 data-i="hero_h">Your gateway to new work opportunities in Europe</h1>
+        <h1 data-i="hero_h">Earn €2,000 for every trip</h1>
         <p class="lead" data-i="hero_p">We welcome professional drivers, men and women, who want to work in transport across Europe. Register with your own or rented car, SUV, van or truck.</p>
-        <div class="paybadge"><span data-i="pb1">Pay from</span><b>€2,000</b><span data-i="pb2">per trip</span></div>
+        <div class="paybadge"><div class="pbrow"><b data-i="pb_amt">€2,000</b><span data-i="pb2">per trip</span></div><div class="pbsub" data-i="pb3">Paid daily, right after each trip ends</div></div>
         <div class="chans">
           <a class="btn btn-main" href="#register"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
           <a class="btn btn-tg" href="https://t.me/BLACKFLEETTRANSPORT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-tg"/></svg>Telegram</a>
@@ -281,13 +290,14 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
           <h2 data-i="o_h">Why join Black Fleet</h2>
         </div>
         <ul>
-          <li data-i="o0">Pay from €2,000 per trip</li>
+          <li data-i="o0">€2,000 for every trip, paid daily after each trip ends</li>
           <li data-i="o1">Transport job opportunities, depending on availability</li>
           <li data-i="o2">Direct contact with our management and dispatch team</li>
           <li data-i="o3">Register with your own vehicle</li>
           <li data-i="o4">Organised driver requests and communication</li>
           <li data-i="o5">Information about available transport jobs</li>
         </ul>
+        <a class="btn btn-main offer-cta" href="#register"><svg aria-hidden="true"><use href="#i-form"/></svg><span data-i="btn_reg">Register now</span></a>
       </div>
     </div>
   </section>
@@ -416,6 +426,7 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     <img src="logo-shield.png" alt="Black Fleet Transport">
     <h2 id="w-h" data-i="w_h">Welcome to Black Fleet Transport</h2>
     <p data-i="w_p">Your gateway to new work opportunities in transport across Europe. Choose your language to continue.</p>
+    <div class="w-offer"><b data-i="w_amt">€2,000</b><span data-i="w_offer">per trip · paid daily</span></div>
     <div class="langs" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="ru" aria-pressed="false">RU</button>
@@ -442,10 +453,10 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
 (function(){
   var WA="359895308410", TG="https://t.me/BLACKFLEETTRANSPORT";
   var T={
-  ru:{pb1:"Оплата от",pb2:"за рейс",o0:"Оплата от €2,000 за рейс",pay4:"Банковский перевод",submit:"Отправить анкету",sending:"Отправка…",or_msg:"Или отправьте сообщением:",ok_sent_h:"Спасибо! Ваша анкета получена",ok_sent:"Наша команда скоро свяжется с вами. Для более быстрого ответа напишите нам в Telegram или WhatsApp.",send_fail:"Не удалось отправить анкету. Проверьте интернет или отправьте её через WhatsApp ниже.",consent:"Я согласен(на), что Black Fleet Transport использует мои данные только для связи со мной по вопросам работы.",err_consent:"Отметьте согласие.",ok_h:"Спасибо! Ваша анкета готова",ok_wa:"Нажмите «Отправить» в WhatsApp, чтобы она дошла до нас. Наша команда скоро свяжется с вами.",ok_tg:"Текст скопирован. Вставьте его в наш чат Telegram и отправьте. Наша команда скоро свяжется с вами.",ok_again:"Заполнить ещё одну анкету",priv_h:"Конфиденциальность",priv_p:"Мы храним отправленные вами данные в нашем внутреннем списке и используем их только для связи с вами по поводу работы в Black Fleet Transport. Мы не продаём и не передаём их третьим лицам. Вы можете в любой момент попросить удалить ваши данные через Telegram, WhatsApp или почту.",
+  ru:{w_offer:"за рейс · оплата ежедневно",w_amt:"€2,000",pb3:"Оплата каждый день, сразу после окончания рейса",pb_amt:"€2,000",pb2:"за рейс",o0:"€2,000 за каждый рейс, оплата ежедневно после окончания рейса",pay4:"Банковский перевод",submit:"Отправить анкету",sending:"Отправка…",or_msg:"Или отправьте сообщением:",ok_sent_h:"Спасибо! Ваша анкета получена",ok_sent:"Наша команда скоро свяжется с вами. Для более быстрого ответа напишите нам в Telegram или WhatsApp.",send_fail:"Не удалось отправить анкету. Проверьте интернет или отправьте её через WhatsApp ниже.",consent:"Я согласен(на), что Black Fleet Transport использует мои данные только для связи со мной по вопросам работы.",err_consent:"Отметьте согласие.",ok_h:"Спасибо! Ваша анкета готова",ok_wa:"Нажмите «Отправить» в WhatsApp, чтобы она дошла до нас. Наша команда скоро свяжется с вами.",ok_tg:"Текст скопирован. Вставьте его в наш чат Telegram и отправьте. Наша команда скоро свяжется с вами.",ok_again:"Заполнить ещё одну анкету",priv_h:"Конфиденциальность",priv_p:"Мы храним отправленные вами данные в нашем внутреннем списке и используем их только для связи с вами по поводу работы в Black Fleet Transport. Мы не продаём и не передаём их третьим лицам. Вы можете в любой момент попросить удалить ваши данные через Telegram, WhatsApp или почту.",
     nav_veh:"Транспорт",nav_offer:"Что мы предлагаем",nav_reg:"Регистрация",nav_contact:"Контакты",
     w_h:"Добро пожаловать в Black Fleet Transport",w_p:"Ваш путь к новым возможностям работы в сфере перевозок по Европе. Выберите язык, чтобы продолжить.",w_go:"Перейти на сайт",
-    hero_eye:"Сеть водителей · Европа",hero_h:"Ваш путь к новой работе в Европе",hero_p:"Мы приглашаем профессиональных водителей, мужчин и женщин, которые хотят работать в сфере перевозок по Европе. Регистрируйтесь со своим или арендованным автомобилем, внедорожником, фургоном или грузовиком.",btn_reg:"Зарегистрироваться",
+    hero_eye:"Сеть водителей · Европа",hero_h:"Зарабатывайте €2,000 за каждый рейс",hero_p:"Мы приглашаем профессиональных водителей, мужчин и женщин, которые хотят работать в сфере перевозок по Европе. Регистрируйтесь со своим или арендованным автомобилем, внедорожником, фургоном или грузовиком.",btn_reg:"Зарегистрироваться",
     v_eye:"Транспорт",v_h:"На чём вы ездите?",v_p:"Мы принимаем заявки от водителей с любым из этих видов транспорта.",
     v1h:"Легковой автомобиль",v1p:"Собственный или арендованный",v2h:"Внедорожник",v2p:"Полноприводные автомобили",v3h:"Фургон",v3p:"Грузовые и пассажирские",v4h:"Грузовик",v4p:"Грузовики и тягачи",
     o_eye:"Что мы предлагаем",o_h:"Почему Black Fleet",o1:"Работа в сфере перевозок, в зависимости от наличия",o2:"Прямая связь с командой управления и диспетчерами",o3:"Регистрация на собственном автомобиле",o4:"Чёткая организация заявок и общения с водителями",o5:"Информация о доступных рейсах и заказах",
@@ -455,10 +466,10 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     err:"Укажите имя и номер телефона.",send_wa:"Отправить в WhatsApp",send_tg:"Скопировать и открыть Telegram",
     c_eye:"Контакты",c_h:"Свяжитесь с командой",c_open:"Открыть чат",copy:"Копировать",copied:"Скопировано",pay:"Как мы вам платим",pay1:"Криптовалюта",pay3:"Наличные",slogan:"Вместе к лучшему будущему в мире перевозок.",
     m_hello:"Здравствуйте, Black Fleet Transport! Хочу в команду водителей:",m_name:"Имя: ",m_phone:"Телефон: ",m_country:"Местоположение: ",m_veh:"Транспорт: ",m_lic:"Права: ",m_exp:"Стаж: ",m_notes:"Дополнительно: "},
-  uk:{pb1:"Оплата від",pb2:"за рейс",o0:"Оплата від €2,000 за рейс",pay4:"Банківський переказ",submit:"Надіслати анкету",sending:"Надсилання…",or_msg:"Або надішліть повідомленням:",ok_sent_h:"Дякуємо! Вашу анкету отримано",ok_sent:"Наша команда скоро зв'яжеться з вами. Для швидшої відповіді напишіть нам у Telegram або WhatsApp.",send_fail:"Не вдалося надіслати анкету. Перевірте інтернет або надішліть її через WhatsApp нижче.",consent:"Я погоджуюся, що Black Fleet Transport використовує мої дані лише для зв'язку зі мною щодо роботи.",err_consent:"Позначте згоду.",ok_h:"Дякуємо! Вашу анкету готово",ok_wa:"Натисніть «Надіслати» у WhatsApp, щоб вона дійшла до нас. Наша команда скоро зв'яжеться з вами.",ok_tg:"Текст скопійовано. Вставте його в наш чат Telegram і надішліть. Наша команда скоро зв'яжеться з вами.",ok_again:"Заповнити ще одну анкету",priv_h:"Конфіденційність",priv_p:"Ми зберігаємо надіслані вами дані в нашому внутрішньому списку та використовуємо їх лише для зв'язку з вами щодо роботи в Black Fleet Transport. Ми не продаємо і не передаємо їх третім особам. Ви можете будь-коли попросити видалити ваші дані через Telegram, WhatsApp або пошту.",
+  uk:{w_offer:"за рейс · оплата щодня",w_amt:"€2,000",pb3:"Оплата щодня, одразу після завершення рейсу",pb_amt:"€2,000",pb2:"за рейс",o0:"€2,000 за кожен рейс, оплата щодня після завершення рейсу",pay4:"Банківський переказ",submit:"Надіслати анкету",sending:"Надсилання…",or_msg:"Або надішліть повідомленням:",ok_sent_h:"Дякуємо! Вашу анкету отримано",ok_sent:"Наша команда скоро зв'яжеться з вами. Для швидшої відповіді напишіть нам у Telegram або WhatsApp.",send_fail:"Не вдалося надіслати анкету. Перевірте інтернет або надішліть її через WhatsApp нижче.",consent:"Я погоджуюся, що Black Fleet Transport використовує мої дані лише для зв'язку зі мною щодо роботи.",err_consent:"Позначте згоду.",ok_h:"Дякуємо! Вашу анкету готово",ok_wa:"Натисніть «Надіслати» у WhatsApp, щоб вона дійшла до нас. Наша команда скоро зв'яжеться з вами.",ok_tg:"Текст скопійовано. Вставте його в наш чат Telegram і надішліть. Наша команда скоро зв'яжеться з вами.",ok_again:"Заповнити ще одну анкету",priv_h:"Конфіденційність",priv_p:"Ми зберігаємо надіслані вами дані в нашому внутрішньому списку та використовуємо їх лише для зв'язку з вами щодо роботи в Black Fleet Transport. Ми не продаємо і не передаємо їх третім особам. Ви можете будь-коли попросити видалити ваші дані через Telegram, WhatsApp або пошту.",
     nav_veh:"Транспорт",nav_offer:"Що ми пропонуємо",nav_reg:"Реєстрація",nav_contact:"Контакти",
     w_h:"Ласкаво просимо до Black Fleet Transport",w_p:"Ваш шлях до нових можливостей роботи у сфері перевезень по Європі. Оберіть мову, щоб продовжити.",w_go:"Перейти на сайт",
-    hero_eye:"Мережа водіїв · Європа",hero_h:"Ваш шлях до нової роботи в Європі",hero_p:"Ми запрошуємо професійних водіїв, чоловіків і жінок, які хочуть працювати у сфері перевезень по Європі. Реєструйтеся з власним або орендованим авто, позашляховиком, фургоном чи вантажівкою.",btn_reg:"Зареєструватися",
+    hero_eye:"Мережа водіїв · Європа",hero_h:"Заробляйте €2,000 за кожен рейс",hero_p:"Ми запрошуємо професійних водіїв, чоловіків і жінок, які хочуть працювати у сфері перевезень по Європі. Реєструйтеся з власним або орендованим авто, позашляховиком, фургоном чи вантажівкою.",btn_reg:"Зареєструватися",
     v_eye:"Транспорт",v_h:"На чому ви їздите?",v_p:"Ми приймаємо заявки від водіїв з будь-яким із цих видів транспорту.",
     v1h:"Легковий автомобіль",v1p:"Власний або орендований",v2h:"Позашляховик",v2p:"Повнопривідні автомобілі",v3h:"Фургон",v3p:"Вантажні та пасажирські",v4h:"Вантажівка",v4p:"Вантажівки та тягачі",
     o_eye:"Що ми пропонуємо",o_h:"Чому Black Fleet",o1:"Робота у сфері перевезень, залежно від наявності",o2:"Прямий зв'язок із командою управління та диспетчерами",o3:"Реєстрація на власному авто",o4:"Чітка організація заявок і спілкування з водіями",o5:"Інформація про доступні рейси та замовлення",
@@ -468,10 +479,10 @@ footer .slogan{font-family:var(--display);font-style:italic;font-weight:700;font
     err:"Вкажіть ім'я та номер телефону.",send_wa:"Надіслати у WhatsApp",send_tg:"Скопіювати й відкрити Telegram",
     c_eye:"Контакти",c_h:"Зв'яжіться з командою",c_open:"Відкрити чат",copy:"Копіювати",copied:"Скопійовано",pay:"Як ми вам платимо",pay1:"Криптовалюта",pay3:"Готівка",slogan:"Разом до кращого майбутнього у світі перевезень.",
     m_hello:"Добрий день, Black Fleet Transport! Хочу до команди водіїв:",m_name:"Ім'я: ",m_phone:"Телефон: ",m_country:"Місцезнаходження: ",m_veh:"Транспорт: ",m_lic:"Права: ",m_exp:"Стаж: ",m_notes:"Додатково: "},
-  ro:{pb1:"Plată de la",pb2:"pe cursă",o0:"Plată de la €2.000 pe cursă",pay4:"Transfer bancar",submit:"Trimite înregistrarea",sending:"Se trimite…",or_msg:"Sau trimite-o ca mesaj:",ok_sent_h:"Mulțumim! Înregistrarea ta a fost primită",ok_sent:"Echipa noastră te va contacta în curând. Pentru un răspuns mai rapid, scrie-ne pe Telegram sau WhatsApp.",send_fail:"Formularul nu a putut fi trimis. Verifică internetul sau trimite-l pe WhatsApp mai jos.",consent:"Sunt de acord ca Black Fleet Transport să folosească datele mele doar pentru a mă contacta despre locuri de muncă.",err_consent:"Bifează acordul.",ok_h:"Mulțumim! Cererea ta este gata",ok_wa:"Apasă Trimite în WhatsApp ca să ajungă la noi. Echipa noastră te va contacta în curând.",ok_tg:"Textul a fost copiat. Lipește-l în chatul nostru de Telegram și trimite-l. Echipa noastră te va contacta în curând.",ok_again:"Completează altă cerere",priv_h:"Confidențialitate",priv_p:"Păstrăm datele pe care ni le trimiți în lista noastră internă și le folosim doar pentru a te contacta despre muncă la Black Fleet Transport. Nu le vindem și nu le transmitem terților. Poți cere oricând ștergerea datelor pe Telegram, WhatsApp sau pe email.",
+  ro:{w_offer:"pe cursă · plată zilnică",w_amt:"€2.000",pb3:"Plată zilnică, imediat după fiecare cursă",pb_amt:"€2.000",pb2:"pe cursă",o0:"€2.000 pentru fiecare cursă, plătiți zilnic după fiecare cursă",pay4:"Transfer bancar",submit:"Trimite înregistrarea",sending:"Se trimite…",or_msg:"Sau trimite-o ca mesaj:",ok_sent_h:"Mulțumim! Înregistrarea ta a fost primită",ok_sent:"Echipa noastră te va contacta în curând. Pentru un răspuns mai rapid, scrie-ne pe Telegram sau WhatsApp.",send_fail:"Formularul nu a putut fi trimis. Verifică internetul sau trimite-l pe WhatsApp mai jos.",consent:"Sunt de acord ca Black Fleet Transport să folosească datele mele doar pentru a mă contacta despre locuri de muncă.",err_consent:"Bifează acordul.",ok_h:"Mulțumim! Cererea ta este gata",ok_wa:"Apasă Trimite în WhatsApp ca să ajungă la noi. Echipa noastră te va contacta în curând.",ok_tg:"Textul a fost copiat. Lipește-l în chatul nostru de Telegram și trimite-l. Echipa noastră te va contacta în curând.",ok_again:"Completează altă cerere",priv_h:"Confidențialitate",priv_p:"Păstrăm datele pe care ni le trimiți în lista noastră internă și le folosim doar pentru a te contacta despre muncă la Black Fleet Transport. Nu le vindem și nu le transmitem terților. Poți cere oricând ștergerea datelor pe Telegram, WhatsApp sau pe email.",
     nav_veh:"Vehicule",nav_offer:"Ce oferim",nav_reg:"Înregistrare",nav_contact:"Contact",
     w_h:"Bun venit la Black Fleet Transport",w_p:"Poarta ta către noi oportunități de muncă în transport în Europa. Alege limba pentru a continua.",w_go:"Intră pe site",
-    hero_eye:"Rețea de șoferi · Europa",hero_h:"Poarta ta către un nou loc de muncă în Europa",hero_p:"Invităm șoferi profesioniști, bărbați și femei, care vor să lucreze în transport în Europa. Înregistrează-te cu mașina proprie sau închiriată, SUV, dubă sau camion.",btn_reg:"Înregistrează-te",
+    hero_eye:"Rețea de șoferi · Europa",hero_h:"Câștigă €2.000 pentru fiecare cursă",hero_p:"Invităm șoferi profesioniști, bărbați și femei, care vor să lucreze în transport în Europa. Înregistrează-te cu mașina proprie sau închiriată, SUV, dubă sau camion.",btn_reg:"Înregistrează-te",
     v_eye:"Vehicule",v_h:"Ce conduci?",v_p:"Acceptăm cereri de la șoferi cu oricare dintre aceste vehicule.",
     v1h:"Autoturism",v1p:"Proprie sau închiriată",v2h:"SUV / 4×4",v2p:"Vehicule cu tracțiune integrală",v3h:"Dubă",v3p:"De marfă și de pasageri",v4h:"Camion",v4p:"Camioane și capete tractor",
     o_eye:"Ce oferim",o_h:"De ce Black Fleet",o1:"Locuri de muncă în transport, în funcție de disponibilitate",o2:"Legătură directă cu echipa de management și dispecerat",o3:"Înregistrare cu vehiculul propriu",o4:"Cereri și comunicare cu șoferii bine organizate",o5:"Informații despre curse și comenzi disponibile",
